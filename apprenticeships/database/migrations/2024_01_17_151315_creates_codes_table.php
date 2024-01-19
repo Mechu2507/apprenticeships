@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('codes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code', 2)->unique();
-            $table->string('password')->nullable();
+            $table->unsignedBigInteger('direction_id');
+            $table->string('code')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
+
+            $table->foreign('direction_id')->references('id')->on('directions')->onDelete('cascade');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course');
+        Schema::dropIfExists('codes');
     }
 };
