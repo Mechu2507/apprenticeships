@@ -11,8 +11,7 @@ class Archive extends Model
 
     protected $fillable = [
         'code_id',
-        'name',
-        'last_name',
+        'student_name',
         'company_name',
         'company_address',
         'company_person',

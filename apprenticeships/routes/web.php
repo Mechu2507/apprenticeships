@@ -4,6 +4,10 @@ use App\Models\Direction;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SelectClassController;
+use App\Models\Active;
+use App\Http\Controllers\ActiveController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +20,22 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('show-login-form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/admin', function () {
-    return view('admin.main');
-});
+Route::get('/admin', function () { return view('admin.main');});
 
-Route::get('/main', function () {
-    return view('main.main');
-});
+Route::get('/main', function () { return view('main.main'); });
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/selectclass', [SelectClassController::class, 'index'])->name('selectclass');
+
+Route::post('/show', [ActiveController::class, 'index'])->name('index');
+Route::get('/actives/{id}/edit', [ActiveController::class, 'edit'])->name('actives.edit');
+Route::put('/actives/{id}', [ActiveController::class, 'update'])->name('actives.update');
+
+Route::get('/import-active', [ActiveController::class, 'importActive'])->name('import-active');
+Route::post('/upload-active', [ActiveController::class, 'uploadActive'])->name('upload-active');
+
+

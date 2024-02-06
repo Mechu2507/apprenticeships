@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('archives', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('code_id');
-            $table->string('name');
-            $table->string('last_name');
+            $table->string('student_name');
             $table->string('company_name');
             $table->string('company_address');
             $table->string('company_person');

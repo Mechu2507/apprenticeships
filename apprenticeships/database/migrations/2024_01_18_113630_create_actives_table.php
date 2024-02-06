@@ -14,16 +14,15 @@ return new class extends Migration
         Schema::create('actives', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('code_id');
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('company_name');
-            $table->string('company_address');
-            $table->string('company_person');
-            $table->string('position');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('supervisor_name');
-            $table->integer('hours');
+            $table->string('student_name');
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
+            $table->string('company_person')->nullable();
+            $table->string('position')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('supervisor_name')->nullable();
+            $table->integer('hours')->nullable();
             $table->boolean('generated')->default(false);
             $table->timestamps();
         
