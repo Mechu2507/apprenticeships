@@ -26,28 +26,47 @@ class ActivesImport implements ToModel, WithStartRow
 
     public function model(array $row)
     {
-        if (Active::where('student_name', $row[1])
-                    ->where('company_name', $row[2])->exists()) {
-            return null;
-        }
 
         if(empty($row[1])){
             return null;
         }
         
-        return new Active([
-            'code_id' => $this->codeId,
-            'student_name' => $row[1],
-            'company_name' => isset($row[2]) ? $row[2] : null,
-            'company_address' => isset($row[3]) ? $row[3] : null,
-            'company_person' => isset($row[4]) ? $row[4] : null,
-            'position' => isset($row[5]) ? $row[5] : null,
-            'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
-            'end_date' => isset($row[7]) ? $this->transformEndDate($row[7]) : null,
-            'supervisor_name' => isset($row[8]) ? $row[8] : null,
-            'hours' => isset($row[10]) ? $row[10] : null,
-            'generated' => false,
-        ]);
+        $existingActive = Active::where('student_name', $row[1])
+                                ->first();
+
+        $mrMs = (substr(trim($row[1]), -1) === 'a') ? 'Pani' : 'Pan';
+
+        if ($existingActive) {
+            $existingActive->update([
+                'student_name' => $row[1],
+                'MrMs' => $mrMs,
+                'company_name' => isset($row[2]) ? $row[2] : null,
+                'company_address' => isset($row[3]) ? $row[3] : null,
+                'company_person' => isset($row[4]) ? $row[4] : null,
+                'position' => isset($row[5]) ? $row[5] : null,
+                'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
+                'end_date' => isset($row[7]) ? $this->transformEndDate($row[7]) : null,
+                'supervisor_name' => isset($row[8]) ? $row[8] : null,
+                'hours' => isset($row[10]) ? $row[10] : null,
+            ]);
+            return $existingActive;
+
+        } else {
+            return new Active([
+                'code_id' => $this->codeId,
+                'student_name' => $row[1],
+                'MrMs' => $mrMs,
+                'company_name' => isset($row[2]) ? $row[2] : null,
+                'company_address' => isset($row[3]) ? $row[3] : null,
+                'company_person' => isset($row[4]) ? $row[4] : null,
+                'position' => isset($row[5]) ? $row[5] : null,
+                'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
+                'end_date' => isset($row[7]) ? $this->transformEndDate($row[7]) : null,
+                'supervisor_name' => isset($row[8]) ? $row[8] : null,
+                'hours' => isset($row[10]) ? $row[10] : null,
+                'generated' => false,
+            ]);
+        }
 
     }
 

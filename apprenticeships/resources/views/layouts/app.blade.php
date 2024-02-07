@@ -8,15 +8,22 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-        <div class="container">
         <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-              <span class="navbar-brand mb-0 h1">System obsługi praktyk</span>
+            <div class="container-fluid d-flex justify-content-between">
+                <a href="{{ url('main') }}" class="btn btn-link">Strona Główna</a>
+                @if (session('direction_name'))
+                <span class="navbar-brand mb-0 h1">Panel - <b>{{session('direction_name')}}</b></span>
+                @endif
+                <div></div>
             </div>
-          </nav>
-        </div>
+        </nav>
+
+        <div align = "center">
+            <br/>
 
         @yield('content')
+
+        </div>
 
         <div class="container-fluid bg-light fixed-bottom">
             <p class="text-center text-black">Uniwersytet Rzeszowski</p>

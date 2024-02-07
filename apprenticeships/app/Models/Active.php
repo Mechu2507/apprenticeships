@@ -12,6 +12,7 @@ class Active extends Model
     protected $fillable = [
         'code_id',
         'student_name',
+        'MrMs',
         'company_name',
         'company_address',
         'company_person',

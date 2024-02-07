@@ -70,6 +70,7 @@ class ActiveController extends Controller
         $request->validate([
             'student_name' => 'required',
             'company_name' => 'required',
+            'MrMs' => 'required',
             'company_address' => 'required',
             'company_person' => 'required',
             'position' => 'required',
@@ -111,10 +112,19 @@ class ActiveController extends Controller
         $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
 
         $codeId = $request->input('code_id');
-        $actives = Active::where('code_id', $codeId)->get();
 
         Excel::import(new ActivesImport($codeId), $request->file('file'));
 
+        $actives = Active::where('code_id', $codeId)->get();
+
         return view('main.table', compact('actives'));
+    }
+
+    public function archiveIndex(Request $request)
+    {
+        $codeId = $request->input('code_id');
+        $actives = Active::where('code_id', $codeId)->get();
+
+        return view('main.archivetable', compact('actives'));
     }
 }

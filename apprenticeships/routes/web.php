@@ -30,8 +30,12 @@ Route::get('/main', function () { return view('main.main'); });
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/selectclass', [SelectClassController::class, 'index'])->name('selectclass');
+Route::get('/codes/create', [SelectClassController::class, 'create'])->name('codes.create');
+Route::post('/codes', [SelectClassController::class, 'store'])->name('codes.store');
+Route::get('/selectarchive', [SelectClassController::class, 'archiveIndex'])->name('selectarchive');
 
 Route::post('/show', [ActiveController::class, 'index'])->name('index');
+Route::post('/showarchive', [ActiveController::class, 'archiveIndex'])->name('archive.index');
 Route::get('/actives/{id}/edit', [ActiveController::class, 'edit'])->name('actives.edit');
 Route::put('/actives/{id}', [ActiveController::class, 'update'])->name('actives.update');
 

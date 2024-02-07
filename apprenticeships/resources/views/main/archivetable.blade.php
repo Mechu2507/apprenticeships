@@ -16,8 +16,6 @@
                 <th>Data zakończenia</th>
                 <th>Opiekun</th>
                 <th>Godziny</th>
-                <th>Wygenerowany</th>
-                <th>Akcja</th>
             </tr>
         </thead>
         <tbody>
@@ -33,16 +31,6 @@
                     <td style="max-width: 80px; white-space: normal; overflow-wrap: break-word;">{{ $active->end_date }}</td>
                     <td style="max-width: 120px; white-space: normal; overflow-wrap: break-word;">{{ $active->supervisor_name }}</td>
                     <td style="max-width: 50px; white-space: normal; overflow-wrap: break-word;">{{ $active->hours }}</td>
-                    <td class="{{ $active->generated ? 'table-success' : 'table-primary' }}" style="width: 10px">{{ $active->generated ? 'Tak' : 'Nie' }}</td>
-                    <td style="max-width: 50px;">
-                        <a href="{{ route('actives.edit', $active->id) }}">Edit</a>
-                        <form action="a" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                        
-                    </td>
                 </tr>
             @endforeach
         </tbody>
