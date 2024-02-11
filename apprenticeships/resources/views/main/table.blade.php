@@ -3,6 +3,10 @@
 @section('content')
 
     <div class="table-container" style="width: 95%; margin: auto;">
+
+    <form action="{{ route('generate.pdf') }}" method="post">    
+    @csrf
+    <button class="btn btn-primary" type="submit">Generowanie PDF</button>
     <table class="table table-striped table-sm" style="font-size: 0.8em;">
         <thead>
             <tr>
@@ -33,15 +37,17 @@
                     <td style="max-width: 80px; white-space: normal; overflow-wrap: break-word;">{{ $active->end_date }}</td>
                     <td style="max-width: 120px; white-space: normal; overflow-wrap: break-word;">{{ $active->supervisor_name }}</td>
                     <td style="max-width: 50px; white-space: normal; overflow-wrap: break-word;">{{ $active->hours }}</td>
-                    <td class="{{ $active->generated ? 'table-success' : 'table-primary' }}" style="width: 10px">{{ $active->generated ? 'Tak' : 'Nie' }}</td>
+                    <td class="{{ $active->generated ? 'table-success' : 'table-primary' }}" style="width: 10px">
+                        {{ $active->generated ? 'Tak' : 'Nie' }} 
+                        <input type="checkbox" name="selected_ids[]" value="{{ $active->id }}">
+                    </td>
                     <td style="max-width: 50px;">
                         <a href="{{ route('actives.edit', $active->id) }}">Edit</a>
-                        <form action="a" method="POST">
+                        {{-- <form action="{{ route('actives.destroy', $active->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                        
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form> --}}
                     </td>
                 </tr>
             @endforeach

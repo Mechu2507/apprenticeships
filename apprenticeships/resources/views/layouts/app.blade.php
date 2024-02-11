@@ -10,11 +10,11 @@
     <body>
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid d-flex justify-content-between">
-                <a href="{{ url('main') }}" class="btn btn-link">Strona Główna</a>
                 @if (session('direction_name'))
+                <button class="btn btn-primary" onclick="window.location.href='{{url('main')}}'">Strona główna</button>
                 <span class="navbar-brand mb-0 h1">Panel - <b>{{session('direction_name')}}</b></span>
+                <button class="btn btn-primary" onclick="window.location.href='{{route('logout')}}'">Wyloguj</button>
                 @endif
-                <div></div>
             </div>
         </nav>
 

@@ -13,6 +13,10 @@ class Code extends Model
         'id',
         'direction_id',
         'code',
+        'active',
+        'year',
+        'degree',
+        'mode',
     ];
 
     public function direction()
@@ -25,8 +29,4 @@ class Code extends Model
         return $this->hasMany(Active::class, 'code_id');
     }
 
-    public function archives()
-    {
-        return $this->hasMany(Archive::class, 'code_id');
-    }
 }

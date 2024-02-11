@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('direction_id');
             $table->string('code')->nullable();
             $table->boolean('active')->default(true);
+            $table->string('year')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('mode')->nullable();
             $table->timestamps();
 
             $table->foreign('direction_id')->references('id')->on('directions')->onDelete('cascade');

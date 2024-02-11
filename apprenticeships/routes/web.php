@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SelectClassController;
 use App\Models\Active;
 use App\Http\Controllers\ActiveController;
+use App\Http\Controllers\PdfController;
 
 
 /*
@@ -38,8 +39,12 @@ Route::post('/show', [ActiveController::class, 'index'])->name('index');
 Route::post('/showarchive', [ActiveController::class, 'archiveIndex'])->name('archive.index');
 Route::get('/actives/{id}/edit', [ActiveController::class, 'edit'])->name('actives.edit');
 Route::put('/actives/{id}', [ActiveController::class, 'update'])->name('actives.update');
+Route::delete('/actives/{active}', [ActiveController::class, 'destroy'])->name('actives.destroy');
+
 
 Route::get('/import-active', [ActiveController::class, 'importActive'])->name('import-active');
 Route::post('/upload-active', [ActiveController::class, 'uploadActive'])->name('upload-active');
 
+Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('generate.pdf');
 
+Route::get('/temppdf', [ActiveController::class, 'tempPDF'])->name('tempPDF');

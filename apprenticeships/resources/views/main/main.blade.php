@@ -9,7 +9,7 @@
     <button class="btn btn-primary" >Export .xls</button>
     </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectarchive')}}'">Archiwum</button>
-    <button class="btn btn-primary" >Wyślij e-mail</button>  
+    <button class="btn btn-primary" onclick="window.location.href='{{route('tempPDF')}}'">Wyślij e-mail</button>  
     <button class="btn btn-primary" >Statystyka</button>
     </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('logout')}}'">Wyloguj</button>    

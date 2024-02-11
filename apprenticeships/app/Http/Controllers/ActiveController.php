@@ -95,7 +95,16 @@ class ActiveController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $active = Active::findOrfail($id);
+
+        $directionId = session('direction_logged_in');
+        if ($active->code->direction_id != $directionId) {
+            return redirect()->route('selectclass')->with('error', 'You are not authorized to delete that student.');
+        }
+
+        $active->delete();
+
+        return redirect()->route('selectclass')->with('success', 'Student deleted successfully.');
     }
 
     public function importActive(Request $request)
@@ -127,4 +136,11 @@ class ActiveController extends Controller
 
         return view('main.archivetable', compact('actives'));
     }
+
+    public function tempPDF()
+    {
+        return view('pdf.template');
+    }
+
+
 }
