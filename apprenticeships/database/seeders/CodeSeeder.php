@@ -16,7 +16,7 @@ class CodeSeeder extends Seeder
     {
         
         DB::table('codes')->insert([
-            ['direction_id'=>2, 'code'=>'II3S123', 'active'=>true],
+            ['direction_id'=>2, 'code'=>'II3S123', 'active'=>true, 'year'=> 'III rok', 'degree'=> 'I stopień', 'mode' => 'st. stacjopnarne'],
             ['direction_id'=>2, 'code'=>'II3S223', 'active'=>true],
             ['direction_id'=>2, 'code'=>'II3S122', 'active'=>false],
             ['direction_id'=>3, 'code'=>'MA2S123', 'active'=>true],

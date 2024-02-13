@@ -7,6 +7,8 @@
     <form action="{{ route('generate.pdf') }}" method="post">    
     @csrf
     <button class="btn btn-primary" type="submit">Generowanie PDF</button>
+    <button class="btn btn-primary" type="submit" formaction="{{ route('generate.single.pdf') }}">Generowanie 1 PDF</button>
+
     <table class="table table-striped table-sm" style="font-size: 0.8em;">
         <thead>
             <tr>
@@ -41,13 +43,14 @@
                         {{ $active->generated ? 'Tak' : 'Nie' }} 
                         <input type="checkbox" name="selected_ids[]" value="{{ $active->id }}">
                     </td>
+                </form>
                     <td style="max-width: 50px;">
                         <a href="{{ route('actives.edit', $active->id) }}">Edit</a>
-                        {{-- <form action="{{ route('actives.destroy', $active->id) }}" method="post">
+                        <form action="{{ route('actives.destroy', $active->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form> --}}
+                        </form>
                     </td>
                 </tr>
             @endforeach

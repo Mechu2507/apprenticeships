@@ -17,7 +17,11 @@
     </head>
     <body>
     <div class="container" > 
-        @foreach ($actives as $index => $active)    
+        
+        @php
+            $firstActive = $actives->first();
+        @endphp
+
         <p style="text-align: center; font-size: 21px;"><b>POROZUMIENIE</b></p>
         <p style="text-align: center; font-size: 16px;"><b>dotyczące organizacji praktyk programowych dla studentów Uniwersytetu Rzeszowskiego</b></p>
         <p style="text-align: center; font-size: 16px;"><b>zawarte w dniu {{ date('Y-m-d') }} r.</b></p>
@@ -25,19 +29,19 @@
         <p style="text-align: justify; font-size: 17px"><b>Uniwersytet Rzeszowski</b> w którego imieniu działa z upoważnienia Rektora</p>
         <p style="text-align: justify; font-size: 17px"><b>REPREZENTANT UR</b></p>
         <p style="text-align: justify; font-size: 17px">i</p>
-        <p style="text-align: justify; font-size: 17px"><b>{{ $active->company_name }}</b></p>
-        <p style="text-align: justify; font-size: 17px">{{ $active->company_address }}</p>
-        <p style="text-align: justify; font-size: 17px">zwana dalej „instytucją”, którą reprezentuje <b>{{ $active->company_person }} - {{ $active->position}}</b></p>
+        <p style="text-align: justify; font-size: 17px"><b>{{ $firstActive->company_name }}</b></p>
+        <p style="text-align: justify; font-size: 17px">{{ $firstActive->company_address }}</p>
+        <p style="text-align: justify; font-size: 17px">zwana dalej „instytucją”, którą reprezentuje <b>{{ $firstActive->company_person }} - {{ $firstActive->position}}</b></p>
         <br/>
         <p style="text-align: justify; font-size: 17px">zawarli na okres</p>
-        <p style="text-align: center; font-size: 17px"><b>{{ $active->start_date }} r. - {{ $active->end_date }} r.</b></p>
+        <p style="text-align: center; font-size: 17px"><b>{{ $firstActive->start_date }} r. - {{ $firstActive->end_date }} r.</b></p>
         <br/>
         <p style="text-align: justify; font-size: 17px">porozumienie następującej treści:</p>
         <br/>
         <table>
             <tr>
                 <td style="width: 1cm; vertical-align: top; font-size: 17px"><b>I.</b></td>
-                <td style="font-size: 17px">Uniwersytet Rzeszowski kieruje do w/w instytucji studenta(ów) <b>KOLEGIUM</b>, kierunek <b>{{ $active->code->direction->name }}</b> w celu odbycia programowej praktyki zawodowej, według poniższego/dołączonego harmonogramu.</td>
+                <td style="font-size: 17px">Uniwersytet Rzeszowski kieruje do w/w instytucji studenta(ów) <b>KOLEGIUM</b>, kierunek <b>{{ $firstActive->code->direction->name }}</b> w celu odbycia programowej praktyki zawodowej, według poniższego/dołączonego harmonogramu.</td>
             </tr>
         </table>
         <br/>
@@ -51,17 +55,19 @@
                 <td style="width: 3.6cm">Rok studiów</td>
                 <td style="width: 3cm">Termin praktyki</td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Praktyka zawodowa</td>
-                <td>{{ $active->student_name }}</td>
-                <td>{{ $active->code->direction->name }}</td>
-                <td>3</td>
-                <td>Jw.</td>
-            </tr>
+            @foreach ($actives as $index => $active)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>Praktyka zawodowa</td>
+                    <td>{{ $active->student_name }}</td>
+                    <td>{{ $active->code->direction->name }}</td>
+                    <td>3</td>
+                    <td>Jw.</td>
+                </tr>
+            @endforeach
         </table>
         <br/>
-        <p style="text-align: justify; font-size: 16px"><i>Praktyka w wymiarze <b>{{ $active->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie <b>{{ $active->supervisor_name }}</b>.</i></p>
+        <p style="text-align: justify; font-size: 16px"><i>Praktyka w wymiarze <b>{{ $firstActive->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie <b>{{ $firstActive->supervisor_name }}</b>.</i></p>
         <br/><br/>
         <div class="page-break"></div>
         <table>
@@ -169,11 +175,6 @@
             </tr>
         </table>
 
-        @if ($index < $actives->count() - 1)
-        <div class="page-break"></div>
-        @endif
-
-        @endforeach
     </div>
     </body>
 </html>

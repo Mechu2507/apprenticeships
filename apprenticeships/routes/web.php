@@ -46,5 +46,7 @@ Route::get('/import-active', [ActiveController::class, 'importActive'])->name('i
 Route::post('/upload-active', [ActiveController::class, 'uploadActive'])->name('upload-active');
 
 Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('generate.pdf');
+Route::post('/generate-single-pdf', [PdfController::class, 'generateSinglePdf'])->name('generate.single.pdf');
+
 
 Route::get('/temppdf', [ActiveController::class, 'tempPDF'])->name('tempPDF');
