@@ -2,16 +2,19 @@
 
 @section('content')
 
+    <div class="container" style="width: 50%">
+
     <h3>Wybierz rocznik</h3>
 
     <form action="/show" method="post">
         @csrf
-        <select name="code_id">
+        <select class="form-select" name="code_id">
             @foreach ($codes as $code)
-                <option value="{{ $code->id }}">{{ $code->code }}</option>
+                <option value="{{ $code->id }}">{{ $code->code }}, {{ $code->year }}, {{ $code->degree }}, {{ $code->mode }}</option>
             @endforeach
         </select>
-        <input type="submit" value="Wybierz">
+        <br/>
+        <input class="btn btn-primary" type="submit" value="Wybierz">
     </form>
 
     @if(session('success'))
@@ -38,10 +41,27 @@
 
     <br/>
 
-    <h3>Stwórz nowy</h3>
+    <h3>Stwórz nowy rocznik</h3>
     <form action="{{ route('codes.create') }}" method="get">
         <button type="submit" class="btn btn-primary">Dodaj nowy rocznik</button>
     </form>
+
+    <br/>
+
+    <h3>Przenieś do archiwum</h3>
+    <form action="{{ url('/codes/' . $code->id) }}" method="post">
+        @csrf
+        @method('put')
+        <select class="form-select" name="code_id">
+            @foreach ($codes as $code)
+                <option value="{{ $code->id }}">{{ $code->code }}, {{ $code->year }}, {{ $code->degree }}, {{ $code->mode }}</option>
+            @endforeach
+        </select>
+        <br/>
+        <input class="btn btn-primary" type="submit" value="Wybierz">
+    </form>
+
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

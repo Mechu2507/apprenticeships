@@ -34,10 +34,10 @@ class LoginController extends Controller
                 'direction_name' => $direction->name 
             ]);
 
-            if('direction_name' == 'admin'){
-                return redirect()->intended('admin');
+            if(session('direction_name') == 'Admin'){
+                return redirect()->intended('/admin');
             }else{
-                return redirect()->intended('main');
+                return redirect()->intended('/main');
             }
 
         }

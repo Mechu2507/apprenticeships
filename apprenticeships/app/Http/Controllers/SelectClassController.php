@@ -70,5 +70,15 @@ class SelectClassController extends Controller
 
         return view('main.selectarchive', compact('codes'));
     }
+
+    public function toArchive($id)
+    {
+
+        $code = Code::findOrFail($id);
+        $code->active = 0;
+        $code->save();
+
+        return redirect()->route('selectclass')->with('success', 'Rocznik został przeniesiony do archiwum.');
+    }
     
 }

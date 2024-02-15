@@ -21,7 +21,7 @@ class PDFController extends Controller
         $representativeId = $request->input('representative_id');
         $representative = Representative::find($representativeId);
 
-        Active::whereIn('id', $ids)->update(['generated' => 1]);
+        Active::whereIn('id', $ids)->update(['generated' => 1, 'state_id' => 2]);
 
         $pdf = PDF::loadView('pdf.template', compact('actives', 'representative'));
         return $pdf->download( 'porozumienie_'. date('Y-m-d-H:i') . '.pdf');
@@ -47,7 +47,8 @@ class PDFController extends Controller
         $representativeId = $request->input('representative_id');
         $representative = Representative::find($representativeId);
 
-        Active::whereIn('id', $ids)->update(['generated' => 1]);
+        Active::whereIn('id', $ids)->update(['generated' => 1, 'state_id' => 2]);
+
 
         $pdf = PDF::loadView('pdf.single_template', compact('actives', 'representative'));
         return $pdf->download('porozumienie_wielu_studentow' . date('Y-m-d-H:i') . '.pdf');

@@ -32,6 +32,7 @@ class ActivesImport implements ToModel, WithStartRow
         }
         
         $existingActive = Active::where('student_name', $row[1])
+                                ->where('company_name', $row[2])
                                 ->first();
 
         $mrMs = (substr(trim($row[1]), -1) === 'a') ? 'Pani' : 'Pan';

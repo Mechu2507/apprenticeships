@@ -22,6 +22,7 @@ class Active extends Model
         'supervisor_name',
         'hours',
         'generated',
+        'state_id',
     ];
 
     public function code()
@@ -29,4 +30,9 @@ class Active extends Model
     return $this->belongsTo(Code::class, 'code_id');
     }
 
+    public function state()
+    {
+    return $this->belongsTo(State::class, 'state_id');
+    }
+    
 }

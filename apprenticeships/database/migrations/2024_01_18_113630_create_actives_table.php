@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('actives', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('code_id');
+            $table->unsignedBigInteger('state_id')->default(1);
             $table->string('MrMs');
             $table->string('student_name');
             $table->string('company_name')->nullable();

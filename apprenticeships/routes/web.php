@@ -35,6 +35,7 @@ Route::get('/selectclass', [SelectClassController::class, 'index'])->name('selec
 Route::get('/codes/create', [SelectClassController::class, 'create'])->name('codes.create');
 Route::post('/codes', [SelectClassController::class, 'store'])->name('codes.store');
 Route::get('/selectarchive', [SelectClassController::class, 'archiveIndex'])->name('selectarchive');
+Route::put('/codes/{id}', [SelectClassController::class, 'toArchive'])->name('codes.toArchive');
 
 Route::post('/show', [ActiveController::class, 'index'])->name('index');
 Route::post('/showarchive', [ActiveController::class, 'archiveIndex'])->name('archive.index');
@@ -52,6 +53,7 @@ Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('gener
 Route::post('/generate-single-pdf', [PdfController::class, 'generateSinglePdf'])->name('generate.single.pdf');
 
 Route::get('/representatives', [RepresentativeController::class, 'index'])->name('representatives.index');
+Route::post('/representatives', [RepresentativeController::class, 'store'])->name('representatives.store');
 Route::get('/representatives/{id}/edit', [RepresentativeController::class, 'edit'])->name('representatives.edit');
 Route::put('/representatives/{id}', [RepresentativeController::class, 'update'])->name('representatives.update');
-Route::delete('/representatives/{id}', [RepresentativeController::class, 'destroy'])->name('representatives.destroy');
+Route::delete('/representatives/{id}/delete', [RepresentativeController::class, 'destroy'])->name('representatives.destroy');

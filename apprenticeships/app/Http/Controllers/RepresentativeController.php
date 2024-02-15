@@ -29,7 +29,8 @@ class RepresentativeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Representative::create($request->all());
+        return redirect()->route('representatives.index');
     }
 
     /**
@@ -65,7 +66,9 @@ class RepresentativeController extends Controller
     public function destroy(string $id)
     {
         $representative = Representative::findOrfail($id);
+
         $representative->delete();
-        return redirect()->route('representatives.index');
+
+        return redirect()->route('representatives.index')->with('success', 'Representative deleted successfully');
     }
 }

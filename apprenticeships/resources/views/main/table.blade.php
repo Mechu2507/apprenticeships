@@ -2,13 +2,6 @@
 
 @section('content')
 
-    @if (session('error'))
-        <script>
-            window.location.reload();
-            alert("{{ session('error') }}");
-        </script>
-    @endif
-
     <div class="table-container" style="width: 95%; margin: auto;">
 
     <form action="{{ route('generate.pdf') }}" method="post">    
@@ -18,13 +11,14 @@
 
     <br/><br/>
 
-    <label for="representative_id">Wybierz reprezentanta UR:</label>
-    <select name="representative_id">
-        @foreach ($representatives as $representative)
-            <option value="{{ $representative->id }}">{{ $representative->name }}</option>
-        @endforeach
-    </select>
-
+    <div class="container" style="width: 50%;">
+        <label for="representative_id">Wybierz reprezentanta UR:</label>
+        <select class="form-select" name="representative_id">
+            @foreach ($representatives as $representative)
+                <option value="{{ $representative->id }}">{{ $representative->name }}</option>
+            @endforeach
+        </select>
+    </div>
 
     <table class="table table-striped table-sm" style="font-size: 0.8em;">
         <thead>

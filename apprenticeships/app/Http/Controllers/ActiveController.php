@@ -129,8 +129,9 @@ class ActiveController extends Controller
         Excel::import(new ActivesImport($codeId), $request->file('file'));
 
         $actives = Active::where('code_id', $codeId)->get();
+        $representatives = Representative::all();
 
-        return view('main.table', compact('actives'));
+        return view('main.table', compact('actives', 'representatives'));
     }
 
     public function archiveIndex(Request $request)

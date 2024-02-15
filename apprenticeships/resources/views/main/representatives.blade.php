@@ -6,7 +6,20 @@
         
        <p style="text-align: center; font-size: 20px;"><b>Lista Reprezentantów UR</b></p><br/>
 
-        <table> 
+        <form action="{{ route('representatives.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="name">Pełna nazwa</label>
+                <br/>
+                <input type="text" class="form-control" id="name" name="name">
+                <br/>
+                <button type="submit" class="btn btn-primary">Dodaj</button>
+            </div>
+        </form>
+
+        <br/>
+
+        <table class="table table-striped"> 
             @foreach ($representatives as $representative)
                 <tr>
                     <td>
@@ -14,8 +27,14 @@
                     </td>
                     <td>
                         <a href="{{ route('representatives.edit', $representative->id) }}">Edytuj</a>
-                        <a href="{{ route('representatives.destroy', $representative->id) }}">Usuń</a>  
                     </td> 
+                    <td>
+                        <form action="{{ route('representatives.destroy', $representative->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </table>
