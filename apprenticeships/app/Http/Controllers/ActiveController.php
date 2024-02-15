@@ -7,6 +7,8 @@ use App\Models\Active;
 use App\Models\Code;
 use App\Imports\ActivesImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ActivesExport;
+use App\Models\Representative;
 
 class ActiveController extends Controller
 {
@@ -17,8 +19,10 @@ class ActiveController extends Controller
     {
         $codeId = $request->input('code_id');
         $actives = Active::where('code_id', $codeId)->get();
+        $representatives = Representative::all();
 
-        return view('main.table', compact('actives'));
+
+        return view('main.table', compact('actives', 'representatives'));
     }
 
     /**
@@ -142,5 +146,22 @@ class ActiveController extends Controller
         return view('pdf.template');
     }
 
+    public function exportActiveIndex(Request $request)
+    {
+        $directionId = session('direction_logged_in');
+        $codes = Code::where('direction_id', $directionId)->get();
+
+        return view('main.export_excel', compact('codes'));
+    }
+
+    public function exportActive(Request $request)
+    {
+        $directionId = session('direction_logged_in');
+        $codes = Code::where('direction_id', $directionId)->get();
+
+        $codeId = $request->input('code_id');
+
+        return Excel::download(new ActivesExport($codeId), 'export' . date('Y-m-d-H:i') . '.xlsx');
+    }
 
 }

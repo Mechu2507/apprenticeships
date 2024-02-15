@@ -37,13 +37,30 @@ class SelectClassController extends Controller
     
         $newCode = $directionCode . $request->digit . $request->mode . $request->degree . '|' . substr($request->year, -2);
     
+        $romanDigit = $this->toRoman($request->digit);
+        $romanDegree = $this->toRoman($request->degree);
+        $fullMode = $this->convertMode($request->mode);
+
         Code::create([
             'direction_id' => $directionId,
             'code' => $newCode,
-            'active' => 1
+            'active' => 1,
+            'year' => $romanDigit . ' rok',
+            'degree' => $romanDegree . ' stopień',
+            'mode' => $fullMode,
         ]);
     
         return redirect()->route('selectclass')->with('success', 'Nowy rocznik został dodany.');
+    }
+
+    function toRoman($number) {
+        $map = ['0' => '', '1' => 'I', '2' => 'II', '3' => 'III', '4' => 'IV', '5' => 'V'];
+        return $map[$number] ?? $number;
+    }
+
+    function convertMode($mode) {
+        $map = ['S' => 'st. stacjonarne', 'N' => 'st. niestacjonarne'];
+        return $map[$mode] ?? $mode;
     }
 
     public function archiveIndex()

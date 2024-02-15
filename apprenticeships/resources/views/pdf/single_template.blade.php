@@ -3,15 +3,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext" type="text/css">
         <style>
             body {
-                /* font-family: 'Times New Roman', Times, serif; */
-                /* font-family: DejaVu Sans; */
-                font-family: TimesNewRoman, serif;
+                font-family: "Lato";
             }
 
             .page-break {
                 page-break-after: always;
+            }
+
+            p {
+                margin: 0px;
             }
         </style>
     </head>
@@ -23,21 +26,21 @@
         @endphp
 
         <p style="text-align: center; font-size: 21px;"><b>POROZUMIENIE</b></p>
+        <br/>
         <p style="text-align: center; font-size: 16px;"><b>dotyczące organizacji praktyk programowych dla studentów Uniwersytetu Rzeszowskiego</b></p>
         <p style="text-align: center; font-size: 16px;"><b>zawarte w dniu {{ date('Y-m-d') }} r.</b></p>
         <br/>
         <p style="text-align: justify; font-size: 17px"><b>Uniwersytet Rzeszowski</b> w którego imieniu działa z upoważnienia Rektora</p>
-        <p style="text-align: justify; font-size: 17px"><b>REPREZENTANT UR</b></p>
+        <p style="text-align: justify; font-size: 17px"><b>{{ $representative->name }}</b></p>
         <p style="text-align: justify; font-size: 17px">i</p>
         <p style="text-align: justify; font-size: 17px"><b>{{ $firstActive->company_name }}</b></p>
         <p style="text-align: justify; font-size: 17px">{{ $firstActive->company_address }}</p>
         <p style="text-align: justify; font-size: 17px">zwana dalej „instytucją”, którą reprezentuje <b>{{ $firstActive->company_person }} - {{ $firstActive->position}}</b></p>
-        <br/>
         <p style="text-align: justify; font-size: 17px">zawarli na okres</p>
+        <br/>
         <p style="text-align: center; font-size: 17px"><b>{{ $firstActive->start_date }} r. - {{ $firstActive->end_date }} r.</b></p>
         <br/>
         <p style="text-align: justify; font-size: 17px">porozumienie następującej treści:</p>
-        <br/>
         <table>
             <tr>
                 <td style="width: 1cm; vertical-align: top; font-size: 17px"><b>I.</b></td>
@@ -61,15 +64,19 @@
                     <td>Praktyka zawodowa</td>
                     <td>{{ $active->student_name }}</td>
                     <td>{{ $active->code->direction->name }}</td>
-                    <td>3</td>
-                    <td>Jw.</td>
+                    <td>{{ $active->code->year}}<br/>
+                        {{ $active->code->degree}}<br/>
+                        {{ $active->code->mode}}
+                    </td>
+                    <td>{{ $active->start_date}}<br/>
+                        {{ $active->end_date}}
+                    </td>
                 </tr>
             @endforeach
         </table>
         <br/>
-        <p style="text-align: justify; font-size: 16px"><i>Praktyka w wymiarze <b>{{ $firstActive->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie <b>{{ $firstActive->supervisor_name }}</b>.</i></p>
-        <br/><br/>
-        <div class="page-break"></div>
+        <p style="text-align: justify; font-size: 16px">Praktyka w wymiarze <b>{{ $firstActive->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie <b>{{ $firstActive->supervisor_name }}</b>.</p>
+        <br/>
         <table>
             <tr>
                 <td style="width: 1cm; vertical-align: top; font-size: 17px"><b>II.</b></td>

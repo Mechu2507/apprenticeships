@@ -8,6 +8,7 @@ use App\Http\Controllers\SelectClassController;
 use App\Models\Active;
 use App\Http\Controllers\ActiveController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\RepresentativeController;
 
 
 /*
@@ -41,12 +42,16 @@ Route::get('/actives/{id}/edit', [ActiveController::class, 'edit'])->name('activ
 Route::put('/actives/{id}', [ActiveController::class, 'update'])->name('actives.update');
 Route::delete('/actives/{active}', [ActiveController::class, 'destroy'])->name('actives.destroy');
 
-
 Route::get('/import-active', [ActiveController::class, 'importActive'])->name('import-active');
 Route::post('/upload-active', [ActiveController::class, 'uploadActive'])->name('upload-active');
+
+Route::get('/export-index', [ActiveController::class, 'exportActiveIndex'])->name('export-index');
+Route::post('/export-active', [ActiveController::class, 'exportActive'])->name('export-active');
 
 Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('generate.pdf');
 Route::post('/generate-single-pdf', [PdfController::class, 'generateSinglePdf'])->name('generate.single.pdf');
 
-
-Route::get('/temppdf', [ActiveController::class, 'tempPDF'])->name('tempPDF');
+Route::get('/representatives', [RepresentativeController::class, 'index'])->name('representatives.index');
+Route::get('/representatives/{id}/edit', [RepresentativeController::class, 'edit'])->name('representatives.edit');
+Route::put('/representatives/{id}', [RepresentativeController::class, 'update'])->name('representatives.update');
+Route::delete('/representatives/{id}', [RepresentativeController::class, 'destroy'])->name('representatives.destroy');

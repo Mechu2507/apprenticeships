@@ -4,7 +4,7 @@
 
     <form action="{{ route('codes.store') }}" method="post">
          @csrf
-         <input type="number" name="digit" min="0" max="9" placeholder="Cyfra od 0 do 9" required><br/>
+         <input type="number" name="digit" min="1" max="5" placeholder="Rok" required><br/>
 
          <select name="mode" required>
              <option value="S">Stacjonarne</option>

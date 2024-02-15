@@ -25,6 +25,17 @@
     </div>
     @endif
 
+    @if(session('error'))
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ session('error') }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+
     <br/>
 
     <h3>Stwórz nowy</h3>
@@ -38,7 +49,7 @@
             if (successToastEl) {
                 var successToast = new bootstrap.Toast(successToastEl, {
                     autohide: true,
-                    delay: 5000 
+                    delay: 5000
                 });
                 successToast.show();
             }
