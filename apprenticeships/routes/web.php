@@ -9,7 +9,8 @@ use App\Models\Active;
 use App\Http\Controllers\ActiveController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RepresentativeController;
-
+use App\Http\Controllers\StateController;
+use App\Http\Controllers\StatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::get('/codes/create', [SelectClassController::class, 'create'])->name('cod
 Route::post('/codes', [SelectClassController::class, 'store'])->name('codes.store');
 Route::get('/selectarchive', [SelectClassController::class, 'archiveIndex'])->name('selectarchive');
 Route::put('/codes/{id}', [SelectClassController::class, 'toArchive'])->name('codes.toArchive');
+Route::get('/selectstatus', [SelectClassController::class, 'statusIndex'])->name('selectstatus');
+Route::get('/selectstats', [SelectClassController::class, 'statIndex'])->name('selectstats');
 
 Route::post('/show', [ActiveController::class, 'index'])->name('index');
 Route::post('/showarchive', [ActiveController::class, 'archiveIndex'])->name('archive.index');
@@ -57,3 +60,8 @@ Route::post('/representatives', [RepresentativeController::class, 'store'])->nam
 Route::get('/representatives/{id}/edit', [RepresentativeController::class, 'edit'])->name('representatives.edit');
 Route::put('/representatives/{id}', [RepresentativeController::class, 'update'])->name('representatives.update');
 Route::delete('/representatives/{id}/delete', [RepresentativeController::class, 'destroy'])->name('representatives.destroy');
+
+Route::post('/status', [StateController::class, 'Index'])->name('status.index');
+Route::put('/update-status', [StateController::class, 'updateStatus'])->name('update.status');
+
+Route::post('/stats', [StatController::class, 'index'])->name('stat.index');

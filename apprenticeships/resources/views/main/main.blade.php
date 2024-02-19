@@ -11,8 +11,8 @@
     </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectarchive')}}'" style="margin: 10px">Archiwum</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('representatives.index')}}'" style="margin: 10px">Reprezentant</button>  
-    <button class="btn btn-primary" style="margin: 10px">Statystyka</button>
-    <button class="btn btn-primary" style="margin: 10px">Status</button>
+    <button class="btn btn-primary" onclick="window.location.href='{{route('selectstats')}}'" style="margin: 10px">Statystyka</button>
+    <button class="btn btn-primary" onclick="window.location.href='{{route('selectstatus')}}'" style="margin: 10px">Status</button>
     </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('logout')}}'" style="margin: 10px">Wyloguj</button>    
 

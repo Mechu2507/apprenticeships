@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function showLoginForm(){
 
         $directions = Direction::all();
@@ -53,6 +58,25 @@ class LoginController extends Controller
             'direction_logged_in',
             'direction_name'
         ]);
+        return redirect()->route('show-login-form');
+    }
+
+    public function showDirectionForm(){
+        return view('auth.create-direction');
+    }
+
+    public function createDirection(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'code' => 'required|unique:directions,code',
+            'password' => 'required'
+        ]);
+
+        $direction = new Direction();
+        $direction->name = $request->input('name');
+        $direction->password = Hash::make($request->input('password'));
+        $direction->save();
+
         return redirect()->route('show-login-form');
     }
 }

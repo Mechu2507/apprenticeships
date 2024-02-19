@@ -80,5 +80,31 @@ class SelectClassController extends Controller
 
         return redirect()->route('selectclass')->with('success', 'Rocznik został przeniesiony do archiwum.');
     }
+
+    public function toStatus($id)
+    {
+        $directionId = session('direction_logged_in');
+        $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
+
+        return view('main.selectstate', compact('codes'));
+    }
+
+    public function statusIndex()
+    {
+        $directionId = session('direction_logged_in');
+        $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
+
+        return view('main.selectstate', compact('codes'));
+    }
+
+    public function statIndex()
+    {
+        $directionId = session('direction_logged_in');
+        $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
+
+        $codes1 = Code::where('direction_id', $directionId)->where('active', false)->get();
+
+        return view('main.selectstat', compact('codes', 'codes1'));
+    }
     
 }

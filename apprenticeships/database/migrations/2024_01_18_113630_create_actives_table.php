@@ -29,6 +29,7 @@ return new class extends Migration
             $table->timestamps();
         
             $table->foreign('code_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
         });
     }
 
