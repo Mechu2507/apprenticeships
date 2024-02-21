@@ -13,7 +13,7 @@ class StateController extends Controller
         $codeId = $request->input('code_id');
         $actives = Active::where('code_id', $codeId)->where('generated', true)->get();
 
-        $states = State::all();
+        $states = State::all()->where('id', '!=', 1);
 
         return view('main.state_table', compact('actives', 'states'));
     }

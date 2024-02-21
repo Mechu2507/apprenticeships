@@ -151,9 +151,11 @@ class ActiveController extends Controller
     public function exportActiveIndex(Request $request)
     {
         $directionId = session('direction_logged_in');
-        $codes = Code::where('direction_id', $directionId)->get();
+        $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
 
-        return view('main.export_excel', compact('codes'));
+        $codes1 = Code::where('direction_id', $directionId)->where('active', false)->get();
+
+        return view('main.export_excel', compact('codes', 'codes1'));
     }
 
     public function exportActive(Request $request)

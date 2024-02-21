@@ -43,14 +43,14 @@
     <br/>
 
     <h3>Stwórz nowy rocznik</h3>
-    <form action="{{ route('codes.create') }}" method="get">
+    <form action="{{ route('admin.codes.create') }}" method="get">
         <button type="submit" class="btn btn-primary">Dodaj nowy rocznik</button>
     </form>
 
     <br/>
 
     <h3>Przenieś do archiwum</h3>
-    <form action="{{ url('/codes/' . $code->id) }}" method="post">
+    <form action="{{ url('/admin/codes/' . $code->id) }}" method="post">
         @csrf
         @method('put')
         <select class="form-select" name="code_id">
