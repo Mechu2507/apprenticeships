@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Direction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
 
     public function showLoginForm(){
 
@@ -61,22 +59,38 @@ class LoginController extends Controller
         return redirect()->route('show-login-form');
     }
 
-    public function showDirectionForm(){
-        return view('auth.create-direction');
+    public function showChangePasswordForm(Request $request)
+    {
+
+        $directionId = $request->session()->get('direction_logged_in');
+    
+        if (!$directionId) {
+            return back()->with('error', 'Brak zdefiniowanego ID kierunku.');
+        }
+
+        return view('auth.change-password', compact('directionId'));
+
     }
 
-    public function createDirection(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'code' => 'required|unique:directions,code',
-            'password' => 'required'
-        ]);
+    public function changePassword(Request $request)
+    {
+    $directionId = session('direction_logged_in');
+    $direction = Direction::findOrFail($directionId);
 
-        $direction = new Direction();
-        $direction->name = $request->input('name');
-        $direction->password = Hash::make($request->input('password'));
-        $direction->save();
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|confirmed',
+        'new_password_confirmation' => 'required',
+    ]);
 
-        return redirect()->route('show-login-form');
+    if (!Hash::check($request->current_password, $direction->password)) {
+        return back()->withErrors(['current_password' => 'Aktualne hasło jest nieprawidłowe.']);
+    }
+
+    $direction->password = Hash::make($request->new_password);
+    $direction->update();
+
+    return back()->with('success', 'Hasło zostało zmienione.');
+
     }
 }

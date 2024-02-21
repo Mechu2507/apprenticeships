@@ -4,9 +4,9 @@
 
 <div align="center">
 
-    <button class="btn btn-primary" >Kierunki</button>
-
     <div class="container" style="width: 50%;">
+
+        <button class="btn btn-primary" onclick="window.location.href='{{route('directions.index')}}'" style="margin: 10px">Kierunki</button>
 
     </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectclass')}}'" style="margin: 10px">Podgląd</button>

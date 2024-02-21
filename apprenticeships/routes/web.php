@@ -11,6 +11,7 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StatController;
+use App\Http\Controllers\DirectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +26,12 @@ use App\Http\Controllers\StatController;
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('show-login-form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/directions/change-password', [LoginController::class, 'showChangePasswordForm'])->name('directions.change-password-form');
+Route::post('/directions/change-password', [LoginController::class, 'changePassword'])->name('directions.changePassword');
 
-Route::get('/admin', function () { return view('admin.main');});
+Route::get('/admin', function () { return view('admin.main');})->name('admin');
 
-Route::get('/main', function () { return view('main.main'); });
+Route::get('/main', function () { return view('main.main'); })->name('main');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -65,3 +68,6 @@ Route::post('/status', [StateController::class, 'Index'])->name('status.index');
 Route::put('/update-status', [StateController::class, 'updateStatus'])->name('update.status');
 
 Route::post('/stats', [StatController::class, 'index'])->name('stat.index');
+
+Route::get('/admin/directions', [DirectionController::class, 'index'])->name('directions.index');
+Route::post('/admin/directions', [DirectionController::class, 'store'])->name('directions.store');

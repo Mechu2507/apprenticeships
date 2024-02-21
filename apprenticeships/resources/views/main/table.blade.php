@@ -52,15 +52,15 @@
                     <td style="max-width: 50px; white-space: normal; overflow-wrap: break-word;">{{ $active->hours }}</td>
                     <td class="{{ $active->generated ? 'table-success' : 'table-primary' }}" style="width: 10px">
                         {{ $active->generated ? 'Tak' : 'Nie' }} 
-                        <input type="checkbox" name="selected_ids[]" value="{{ $active->id }}">
+                        <input type="checkbox" class="form-check-input" selected_ids[]" value="{{ $active->id }}">
                     </td>
                 </form>
                     <td style="max-width: 50px;">
-                        <a href="{{ route('actives.edit', $active->id) }}">Edit</a>
+                        <a href="{{ route('actives.edit', $active->id) }}">Edytuj</a>
                         <form action="{{ route('actives.destroy', $active->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
                         </form>
                     </td>
                 </tr>
