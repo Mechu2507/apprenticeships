@@ -45,9 +45,29 @@ class StatController extends Controller
                             })
                             ->sortBy(function ($count, $key) {
                                 return [-$count, $key];
-                            });                    
+                            });
+                            
+        $generatedStats = $actives->groupBy('generated')
+                            ->map(function ($items, $key) {
+                                return count($items);
+                            })
+                            ->sortBy(function ($count, $key) {
+                                return [-$count, $key];
+                            });
+                    
+        $actives1 = Active::with('state')->where('code_id', $codeId)->get();
+                            
+        $statusStats = $actives->groupBy(function($item) {
+            return $item->state->name ?? 'Brak informacji o firmie';
+        })
+        ->map(function ($items, $key) {
+            return count($items);
+        })
+        ->sortByDesc(function ($count, $key) {
+            return [$count, $key];
+        });                    
 
-        return view('main.stat_table', compact('companyNameStats', 'companyPersonStats', 'positionStats', 'supervisorStats'));
+        return view('main.stat_table', compact('companyNameStats', 'companyPersonStats', 'positionStats', 'supervisorStats', 'generatedStats', 'statusStats'));
     }
 
 

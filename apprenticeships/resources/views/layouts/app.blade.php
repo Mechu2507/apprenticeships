@@ -47,7 +47,7 @@
         
         <div class="d-flex">
             @if (session('direction_name'))
-            <div id="sidebar" class="bg-light border" style="width: 200px;">
+            <div id="sidebar" class="bg-light border" style="width: 200px; height: 50%">
                 <ul class="nav flex-column" style="background-color: #0d6efd;">
                     @if (session('direction_name') == 'Admin')
                         @include('admin.sidebaradmin')
@@ -57,7 +57,7 @@
                 </ul>
             </div>
 
-            <button id="sidebarToggle" class="btn btn-primary" style=" top: 10px; left: 10px;  z-index: 1000; height: 40px; width: 40px;">☰</button>
+            <button id="sidebarToggle" class="btn btn-primary" style="position: fixed; top: 10px; left: 10px;  z-index: 1000; height: 40px; width: 40px;">☰</button>
             @endif
 
             <div class="flex-grow-1" style="padding: 10px;">

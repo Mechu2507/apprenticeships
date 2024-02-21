@@ -82,6 +82,7 @@ class ActiveController extends Controller
             'end_date' => 'required',
             'supervisor_name' => 'required',
             'hours' => 'required',
+            'generated' => 'required',
         ]);
 
         $directionId = session('direction_logged_in');

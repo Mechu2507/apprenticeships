@@ -52,6 +52,14 @@
                         <td><label for="hours">Godziny: </label></td>
                         <td><input type="text" class="form-control" id="hours" name="hours" value="{{ $active->hours }}"></td>
                     </tr>
+                    <tr>
+                        <td><label for="generated">Wygenerowamy: </label></td>
+                        <td>
+                            <select id="generated" class="form-control" name="generated">
+                                <option value="1" {{ $active->generated == 'Tak' ? 'selected' : '' }}>Tak</option>
+                                <option value="0" {{ $active->generated == 'Nie' ? 'selected' : '' }}>Nie</option>
+                            </select>
+                        </td>
                 </tbody>
             </table>
             <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
