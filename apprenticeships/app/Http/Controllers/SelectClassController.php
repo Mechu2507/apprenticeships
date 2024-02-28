@@ -75,6 +75,7 @@ class SelectClassController extends Controller
     {
 
         $code = Code::findOrFail($id);
+        
         $code->active = 0;
         $code->save();
 

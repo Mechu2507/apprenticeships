@@ -70,9 +70,9 @@ Route::put('/update-status', [StateController::class, 'updateStatus'])->name('up
 
 Route::post('/stats', [StatController::class, 'index'])->name('stat.index');
 
-Route::get('/admin/directions', [DirectionController::class, 'index'])->name('directions.index')->middleware('isAdmin');
-Route::post('/admin/directions', [DirectionController::class, 'store'])->name('directions.store')->middleware('isAdmin');
-
+Route::middleware(['isAdmin'])->group(function () {
+Route::get('/admin/directions', [DirectionController::class, 'index'])->name('directions.index');
+Route::post('/admin/directions', [DirectionController::class, 'store'])->name('directions.store');    
 Route::get('/aselectclass', [AdminSelectClassController::class, 'index'])->name('aselectclass');
 Route::post('/admin_show', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/admin/codes/create', [AdminSelectClassController::class, 'create'])->name('admin.codes.create');
@@ -84,6 +84,7 @@ Route::post('/admin/export-active', [AdminController::class, 'exportActive'])->n
 Route::get('/admin/selectstats', [AdminSelectClassController::class, 'statIndex'])->name('admin.selectstats');
 Route::get('/admin/selectstatus', [AdminSelectClassController::class, 'statusIndex'])->name('admin.selectstatus');
 Route::post('/admin/codes', [AdminSelectClassController::class, 'store'])->name('admin.codes.store');
+});
 
 Route::get('/directions/change-password', [LoginController::class, 'showChangePasswordForm'])->name('directions.change-password-form');
 Route::post('/directions/change-password', [LoginController::class, 'changePassword'])->name('directions.changePassword');

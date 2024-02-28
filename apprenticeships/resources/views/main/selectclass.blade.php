@@ -18,28 +18,6 @@
         <input class="btn btn-primary" type="submit" value="Wybierz">
     </form>
 
-    @if(session('success'))
-    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ session('success') }}
-            </div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-    </div>
-    @endif
-
-    @if(session('error'))
-    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ session('error') }}
-            </div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-    </div>
-    @endif
-
     <br/>
 
     <h3>Stwórz nowy rocznik</h3>
@@ -50,6 +28,11 @@
     <br/>
 
     <h3>Przenieś do archiwum</h3>
+    @if ($codes->isEmpty())
+        <div class="alert alert-warning" role="alert">
+            Brak roczników do przeniesienia do archiwum
+        </div>
+    @else
     <form action="{{ url('/codes/' . $code->id) }}" method="post">
         @csrf
         @method('put')
@@ -61,6 +44,7 @@
         <br/>
         <input class="btn btn-primary" type="submit" value="Wybierz">
     </form>
+    @endif
 
     <br/>
 
@@ -97,6 +81,28 @@
         </div>
     </div>
 
+    @if(session('success'))
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast" style="position: fixed; top: 20px; right: 20px; z-index: 1000; background-color:rgb(216, 0, 0)">
+        <div class="d-flex">
+            <div class="toast-body" style="color: white">
+                {{ session('error') }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+
     </div>
 
     <script>
@@ -108,6 +114,17 @@
                     delay: 5000
                 });
                 successToast.show();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var errorToastEl = document.getElementById('errorToast');
+            if (errorToastEl) {
+                var errorToast = new bootstrap.Toast(errorToastEl, {
+                    autohide: true,
+                    delay: 5000
+                });
+                errorToast.show();
             }
         });
     </script>

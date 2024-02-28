@@ -9,9 +9,8 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route ('login')}}">
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="study-direction" class="col-md-4 col-form-label text-md-end">{{ __('Kierunek Studiów') }}</label>
+                            <label for="study-direction" class="col-md-4 col-form-label text-md-end">Kierunek Studiów</label>
                             <div class="col-md-6">
                             <select class="form-select " aria-label="Default select example" name="direction" id="direction" required>
                                 <option selected>Wybierz kierunek</option>
@@ -23,7 +22,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Hasło') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">Hasło</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -40,13 +39,7 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Zaloguj się') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                                </button> 
                             </div>
                         </div>
                     </form>

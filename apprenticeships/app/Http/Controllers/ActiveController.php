@@ -58,7 +58,7 @@ class ActiveController extends Controller
 
         $directionId = session('direction_logged_in');
         if ($active->code->direction_id != $directionId) {
-            return redirect()->route('home')->with('error', 'You are not authorized to edit that student.');
+            return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do edycji tego studenta.');
         }
 
         return view('main.edit', compact('active'));
