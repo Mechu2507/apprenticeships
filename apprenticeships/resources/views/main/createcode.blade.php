@@ -7,7 +7,7 @@
 
         <form action="{{ route('codes.store') }}" method="post">
             @csrf
-            <input class="form-control" type="number" name="digit" min="1" max="5" placeholder="Rok" required><br/>
+            <input class="form-control" type="number" name="digit" min="1" max="5" placeholder="Rok studiów" required><br/>
 
             <select class="form-select" name="mode" required>
                 <option value="S">Stacjonarne</option>

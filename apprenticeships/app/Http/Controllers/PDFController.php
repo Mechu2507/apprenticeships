@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Active;
 use App\Models\Representative;
-use ZipArchive;
-
 
 class PDFController extends Controller
 {
@@ -53,4 +51,5 @@ class PDFController extends Controller
         $pdf = PDF::loadView('pdf.single_template', compact('actives', 'representative'));
         return $pdf->download('porozumienie_wielu_studentow' . date('Y-m-d-H:i') . '.pdf');
     }
+    
 }

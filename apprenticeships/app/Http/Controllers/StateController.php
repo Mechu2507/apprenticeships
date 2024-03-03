@@ -28,7 +28,7 @@ class StateController extends Controller
             }
         }
     
-        return redirect()->route('selectstatus')->with('success', 'Zaktualizowano stan studentów.');
+        return redirect()->route('selectstatus')->with('success', 'Zaktualizowano status porozumienia.');
     }
     
 }

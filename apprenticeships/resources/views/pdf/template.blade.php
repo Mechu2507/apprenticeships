@@ -18,6 +18,7 @@
             }
         </style>
     </head>
+    
     <body>
     <div class="container" > 
         @foreach ($actives as $index => $active)    
@@ -40,7 +41,7 @@
         <table>
             <tr>
                 <td style="width: 1cm; vertical-align: top; font-size: 16px"><b>I.</b></td>
-                <td style="font-size: 16px">Uniwersytet Rzeszowski kieruje do w/w instytucji studenta(ów) <b>KOLEGIUM</b>, kierunek <b>{{ $active->code->direction->name }}</b> w celu odbycia programowej praktyki zawodowej, według poniższego/dołączonego harmonogramu.</td>
+                <td style="font-size: 16px">Uniwersytet Rzeszowski kieruje do w/w instytucji studenta(ów) Kolegium Nauk <b>Przyrodniczych</b>, kierunek <b>{{ $active->code->direction->name }}</b> w celu odbycia programowej praktyki zawodowej, według poniższego/dołączonego harmonogramu.</td>
             </tr>
         </table>
         <br/>

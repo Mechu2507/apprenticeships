@@ -73,21 +73,12 @@ class SelectClassController extends Controller
 
     public function toArchive($id)
     {
-
         $code = Code::findOrFail($id);
         
         $code->active = 0;
         $code->save();
 
         return redirect()->route('selectclass')->with('success', 'Rocznik został przeniesiony do archiwum.');
-    }
-
-    public function toStatus($id)
-    {
-        $directionId = session('direction_logged_in');
-        $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
-
-        return view('main.selectstate', compact('codes'));
     }
 
     public function statusIndex()

@@ -46,7 +46,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'direction' => 'Nie udało się zalogować z wybranym kierunkiem'
+            'direction' => 'Wystąpił błąd podczas logowania. Spróbuj ponownie.'
         ]);
 
     }
@@ -79,8 +79,8 @@ class LoginController extends Controller
 
     $request->validate([
         'current_password' => 'required',
-        'new_password' => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|confirmed',
-        'new_password_confirmation' => 'required',
+        'new_password' => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|confirmed|different:current_password',
+        'new_password_confirmation' => 'required|same:new_password',
     ]);
 
     if (!Hash::check($request->current_password, $direction->password)) {
@@ -91,6 +91,6 @@ class LoginController extends Controller
     $direction->update();
 
     return back()->with('success', 'Hasło zostało zmienione.');
-
     }
+
 }

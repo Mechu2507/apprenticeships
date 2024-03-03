@@ -55,8 +55,12 @@
                         <input type="checkbox" class="form-check-input" name="selected_ids[]" value="{{ $active->id }}">
                     </td>
                 </form>
-                    <td style="max-width: 50px;">
-                        <a href="{{ route('actives.edit', $active->id) }}">Edytuj</a>
+                    <td style="max-width: 70px;">
+                        <form action="{{ route('actives.edit', $active->id) }}" method="get">
+                            @csrf
+                            @method('GET')
+                            <button type="submit" class="btn btn-success  btn-sm">Edytuj</button>
+                        </form>
                         <form action="{{ route('actives.destroy', $active->id) }}" method="post">
                             @csrf
                             @method('DELETE')

@@ -4,7 +4,6 @@
 
     <div class="container" style="width: 50%">
         <p style="text-align: center; font-size: 20px;"><b>Dodaj rocznik</b></p><br/>
-{{-- wykonać dodanie kierunku --}}
         <form action="{{ route('admin.codes.store') }}" method="post">
             @csrf
             <select class="form-select" name="direction" required>

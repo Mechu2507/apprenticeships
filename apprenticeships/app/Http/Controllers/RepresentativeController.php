@@ -69,6 +69,6 @@ class RepresentativeController extends Controller
 
         $representative->delete();
 
-        return redirect()->route('representatives.index')->with('success', 'Representative deleted successfully');
+        return redirect()->route('representatives.index')->with('success', 'Reprentant został usunięty.');
     }
 }

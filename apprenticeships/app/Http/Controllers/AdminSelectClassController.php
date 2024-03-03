@@ -37,7 +37,7 @@ class AdminSelectClassController extends Controller
         ]);
     
         $directionId = session('direction_logged_in');
-        // $directionCode = Direction::find($directionId)->code;
+        //$directionCode = Direction::find($directionId)->code;
         $directionCode = Direction::find($request->direction)->code; 
     
         $newCode = $directionCode . $request->digit . $request->mode . $request->degree . '|' . substr($request->year, -2);

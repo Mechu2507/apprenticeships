@@ -21,7 +21,6 @@ class ActiveController extends Controller
         $actives = Active::where('code_id', $codeId)->get();
         $representatives = Representative::all();
 
-
         return view('main.table', compact('actives', 'representatives'));
     }
 
@@ -87,12 +86,12 @@ class ActiveController extends Controller
 
         $directionId = session('direction_logged_in');
         if ($active->code->direction_id != $directionId) {
-            return redirect()->route('selectclass')->with('error', 'You are not authorized to edit that student.');
+            return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do edycji tego studenta.');
         }
 
         $active->update($request->all());
 
-        return redirect()->route('selectclass')->with('success', 'Student updated successfully.');
+        return redirect()->route('selectclass')->with('success', 'Dane zaaktualizowane pomyślnie');
     }
 
     /**
@@ -104,12 +103,12 @@ class ActiveController extends Controller
 
         $directionId = session('direction_logged_in');
         if ($active->code->direction_id != $directionId) {
-            return redirect()->route('selectclass')->with('error', 'You are not authorized to delete that student.');
+            return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do usunięcia tego studenta');
         }
 
         $active->delete();
 
-        return redirect()->route('selectclass')->with('success', 'Student deleted successfully.');
+        return redirect()->route('selectclass')->with('success', 'Student usunięty pomyślnie.');
     }
 
     public function importActive(Request $request)
@@ -141,11 +140,6 @@ class ActiveController extends Controller
         $actives = Active::where('code_id', $codeId)->get();
 
         return view('main.archivetable', compact('actives'));
-    }
-
-    public function tempPDF()
-    {
-        return view('pdf.template');
     }
 
     public function exportActiveIndex(Request $request)

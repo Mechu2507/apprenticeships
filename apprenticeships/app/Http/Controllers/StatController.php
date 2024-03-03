@@ -21,15 +21,7 @@ class StatController extends Controller
                             })
                             ->sortBy(function ($count, $key) {
                                 return [-$count, $key];
-                            });
-
-        $companyPersonStats = $actives->groupBy('company_person')
-                            ->map(function ($items, $key) {
-                                return count($items);
-                            })
-                            ->sortBy(function ($count, $key) {
-                                return [-$count, $key];
-                            });         
+                            });       
                             
         $positionStats = $actives->groupBy('position')
                             ->map(function ($items, $key) {
@@ -38,14 +30,6 @@ class StatController extends Controller
                             ->sortBy(function ($count, $key) {
                                 return [-$count, $key];
                             });                    
-        
-        $supervisorStats = $actives->groupBy('supervisor_name')
-                            ->map(function ($items, $key) {
-                                return count($items);
-                            })
-                            ->sortBy(function ($count, $key) {
-                                return [-$count, $key];
-                            });
                             
         $generatedStats = $actives->groupBy('generated')
                             ->map(function ($items, $key) {
@@ -54,22 +38,17 @@ class StatController extends Controller
                             ->sortBy(function ($count, $key) {
                                 return [-$count, $key];
                             });
-                    
-        $actives1 = Active::with('state')->where('code_id', $codeId)->get();
                             
         $statusStats = $actives->groupBy(function($item) {
-            return $item->state->name ?? 'Brak informacji o firmie';
-        })
-        ->map(function ($items, $key) {
-            return count($items);
-        })
-        ->sortByDesc(function ($count, $key) {
-            return [$count, $key];
-        });                    
+                            return $item->state->name ?? 'Brak informacji o firmie';
+                            })
+                            ->map(function ($items, $key) {
+                            return count($items);
+                            })
+                            ->sortByDesc(function ($count, $key) {
+                            return [$count, $key];
+                            });                    
 
-        return view('main.stat_table', compact('companyNameStats', 'companyPersonStats', 'positionStats', 'supervisorStats', 'generatedStats', 'statusStats'));
+        return view('main.stat_table', compact('companyNameStats', 'positionStats', 'generatedStats', 'statusStats'));
     }
-
-
-
 }
