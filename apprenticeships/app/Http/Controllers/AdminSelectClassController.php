@@ -77,6 +77,14 @@ class AdminSelectClassController extends Controller
         return redirect()->route('aselectclass')->with('success', 'Rocznik został przeniesiony do archiwum.');
     }
 
+    public function ArchiveIndex()
+    {
+        $directionId = session('direction_logged_in');
+        $codes = Code::where('active', false)->get();
+
+        return view('main.selectarchive', compact('codes'));
+    }
+
     public function statIndex()
     {
         $directionId = session('direction_logged_in');

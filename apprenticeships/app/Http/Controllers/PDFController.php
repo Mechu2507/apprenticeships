@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Active;
 use App\Models\Representative;
+use Carbon\Carbon;
 
 class PDFController extends Controller
 {
@@ -19,9 +20,12 @@ class PDFController extends Controller
         $representativeId = $request->input('representative_id');
         $representative = Representative::find($representativeId);
 
+        $generateDate = $request->input('generate_date', now());
+        $generateDateFormatted = Carbon::parse($generateDate)->format('d.m.Y');
+
         Active::whereIn('id', $ids)->update(['generated' => 1, 'state_id' => 2]);
 
-        $pdf = PDF::loadView('pdf.template', compact('actives', 'representative'));
+        $pdf = PDF::loadView('pdf.template', compact('actives', 'representative', 'generateDateFormatted'));
         return $pdf->download( 'porozumienie_'. date('Y-m-d-H:i') . '.pdf');
 
     }
@@ -45,10 +49,13 @@ class PDFController extends Controller
         $representativeId = $request->input('representative_id');
         $representative = Representative::find($representativeId);
 
+        $generateDate = $request->input('generate_date', now());
+        $generateDateFormatted = Carbon::parse($generateDate)->format('d.m.Y');
+
         Active::whereIn('id', $ids)->update(['generated' => 1, 'state_id' => 2]);
 
 
-        $pdf = PDF::loadView('pdf.single_template', compact('actives', 'representative'));
+        $pdf = PDF::loadView('pdf.single_template', compact('actives', 'representative', 'generateDateFormatted'));
         return $pdf->download('porozumienie_wielu_studentow' . date('Y-m-d-H:i') . '.pdf');
     }
     

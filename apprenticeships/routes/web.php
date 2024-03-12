@@ -77,6 +77,7 @@ Route::middleware(['checkSession'])->group(function () {
         Route::post('/admin/directions', [DirectionController::class, 'store'])->name('directions.store');    
         Route::get('/aselectclass', [AdminSelectClassController::class, 'index'])->name('aselectclass');
         Route::post('/admin_show', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/admin/selectarchive', [AdminSelectClassController::class, 'archiveIndex'])->name('admin.selectarchive');
         Route::get('/admin/codes/create', [AdminSelectClassController::class, 'create'])->name('admin.codes.create');
         Route::put('/admin/codes/{id}', [AdminSelectClassController::class, 'toArchive'])->name('admin.codes.toArchive');
         Route::get('/admin/import-active', [AdminController::class, 'importActive'])->name('admin.import-active');

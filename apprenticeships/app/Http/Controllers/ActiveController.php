@@ -9,6 +9,7 @@ use App\Imports\ActivesImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ActivesExport;
 use App\Models\Representative;
+use App\Imports\ActivesImport1;
 
 class ActiveController extends Controller
 {
@@ -125,8 +126,13 @@ class ActiveController extends Controller
         $codes = Code::where('direction_id', $directionId)->where('active', true)->get();
 
         $codeId = $request->input('code_id');
+        $selectedImportOption = $request->input('import_option');
 
-        Excel::import(new ActivesImport($codeId), $request->file('file'));
+        if ($selectedImportOption == 'ActivesImport1') {
+            Excel::import(new ActivesImport1($codeId), $request->file('file'));
+        } elseif ($selectedImportOption == 'ActivesImport') {
+            Excel::import(new ActivesImport($codeId), $request->file('file'));
+        }
 
         $actives = Active::where('code_id', $codeId)->get();
         $representatives = Representative::all();

@@ -18,6 +18,9 @@
     <button class="btn btn-primary" onclick="window.location.href='{{route('admin.export-index')}}'" style="width:100%">Export .xls</button>
 </li>
 <li class="nav-item">
+    <button class="btn btn-primary" onclick="window.location.href='{{route('admin.selectarchive')}}'" style="width:100%">Archiwum</button>
+</li>
+<li class="nav-item">
     <button class="btn btn-primary" onclick="window.location.href='{{route('representatives.index')}}'" style="width:100%">Reprezentant</button>
 </li>
 <li class="nav-item">

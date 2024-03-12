@@ -2,5 +2,11 @@
     "lato": {
         "normal": "F:\\projekty\\apprenticeships\\apprenticeships\\storage\\fonts\/lato_normal_8d8caa955813914583b48856f771c797",
         "bold": "lato_bold_67598b5322052c86a10dc46e07e35ef8"
+    },
+    "tinos": {
+        "italic": "F:\\projekty\\apprenticeships\\apprenticeships\\storage\\fonts\/tinos_italic_c423514f447d7ef04b0e95ecaebb0a33",
+        "bold_italic": "F:\\projekty\\apprenticeships\\apprenticeships\\storage\\fonts\/tinos_bold_italic_db3812792c4bc75692c1dd68079ec280",
+        "normal": "F:\\projekty\\apprenticeships\\apprenticeships\\storage\\fonts\/tinos_normal_c57bfb27c2977cd776af530be7977941",
+        "bold": "tinos_bold_3126ce3ff7f7ccbc55c95f941f1684c3"
     }
 }

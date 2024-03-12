@@ -11,13 +11,21 @@
 
     <br/><br/>
 
-    <div class="container" style="width: 50%;">
-        <label for="representative_id">Wybierz reprezentanta UR:</label>
-        <select class="form-select" name="representative_id">
-            @foreach ($representatives as $representative)
-                <option value="{{ $representative->id }}">{{ $representative->name }}</option>
-            @endforeach
-        </select>
+    <div class="container" style="width: 80%;">
+        <div class="row">
+            <div class="col">
+                <label for="representative_id">Wybierz reprezentanta UR:</label>
+                <select class="form-select" name="representative_id">
+                    @foreach ($representatives as $representative)
+                        <option value="{{ $representative->id }}">{{ $representative->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col">
+                <label for="generate_date">Data wygenerowania:</label>
+                <input type="date" class="form-control" name="generate_date">
+            </div> 
+        </div>
     </div>
 
     <table class="table table-striped table-sm" style="font-size: 0.8em;">
