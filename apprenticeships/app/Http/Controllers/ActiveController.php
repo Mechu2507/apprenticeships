@@ -57,8 +57,10 @@ class ActiveController extends Controller
         $active = Active::findOrfail($id);
 
         $directionId = session('direction_logged_in');
-        if ($active->code->direction_id != $directionId) {
-            return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do edycji tego studenta.');
+        if(session('direction_name') != 'Admin'){
+            if ($active->code->direction_id != $directionId) {
+                return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do edycji tego studenta.');
+            }
         }
 
         return view('main.edit', compact('active'));
@@ -86,8 +88,10 @@ class ActiveController extends Controller
         ]);
 
         $directionId = session('direction_logged_in');
-        if ($active->code->direction_id != $directionId) {
-            return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do edycji tego studenta.');
+        if(session('direction_name') != 'Admin'){
+            if ($active->code->direction_id != $directionId) {
+                return redirect()->route('selectclass')->with('error', 'Nie masz uprawnień do edycji tego studenta.');
+            }
         }
 
         $active->update($request->all());

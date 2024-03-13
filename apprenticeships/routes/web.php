@@ -67,7 +67,9 @@ Route::middleware(['checkSession'])->group(function () {
 
     Route::get('/selectstatus', [SelectClassController::class, 'statusIndex'])->name('selectstatus');
     Route::post('/status', [StateController::class, 'Index'])->name('status.index');
-    Route::put('/update-status', [StateController::class, 'updateStatus'])->name('update.status');
+    Route::post('/upload-students-data', [StateController::class, 'uploadStudentsData'])->name('upload-students-data');
+    Route::get('/edit-status/{id}', [StateController::class, 'editStatus'])->name('edit.status');
+    Route::put('/update-status/{id}', [StateController::class, 'updateStatus'])->name('update.status');
 
     Route::get('/selectstats', [SelectClassController::class, 'statIndex'])->name('selectstats');
     Route::post('/stats', [StatController::class, 'index'])->name('stat.index');

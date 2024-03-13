@@ -2,63 +2,88 @@
 
 @section('content')
 
-    <div class="table-container" style="width: 70%; margin: auto;">
+    <div class="table-container" style="width: 90%; margin: auto;">
 
         <h3 style="text-align: center; margin-bottom: 20px;">Statusy wygenerowanych porozumień</h3>
 
-        <form action="{{ route('update.status') }}" method="POST">
+        <form action="{{ route('upload-students-data') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
+            <input type="hidden" name="code_id" value="{{ $codeId }}">
+            <input class="form-control" style="max-width: 500px" type="file" name="file" required>
+            <br/>
+            <button class="btn btn-primary" type="submit">Importuj XLS</button>
+        </form>
 
-        <button type="submit" class="btn btn-primary btn-sm" style="font-size: 1em;">Zmień status</button>
+        <br/>
 
         <table class="table table-striped table-sm" style="font-size: 0.8em;">
             <thead>
                 <tr>
                     <th>Nazwisko i imię</th>
-                    <th>Wygenerowany</th>
-                    <th>Status porozumienia</th>
-                    <th>Edycja statusu</th>
+                    <th>Indeks</th>
+                    <th>Adres</th>
+                    <th>Telefon</th>
+                    <th>Email</th>
+                    <th>do Podpisu</th>
+                    <th>data Maila</th>
+                    <th>data Koperty</th>
+                    <th>Odbiór Wł.</th>
+                    <th>Zwrot</th>
+                    <th>Firma</th>
+                    <th>Edytuj</th>
                 </tr>
             <thead>
             <tbody>
                 @foreach ($actives as $active)
                     <tr>
-                        <td style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">{{ $active->student_name }}</td>
-                        <td class="{{ $active->generated ? 'table-success' : 'table-primary' }}" style="width: 15%">
-                            {{ $active->generated ? 'Tak' : 'Nie' }} 
+                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->student_name }}</td>
+                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->index }}</td>
+                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->address }}</td>
+                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->phone }}</td>
+                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->email }}</td>
+                        <td class="@if ($active->for_signature != NULL) table-danger @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
+                            @if ($active->for_signature == NULL)
+                                0000-00-00
+                            @else
+                                {{ $active->for_signature }}
+                            @endif
                         </td>
-                        <td class="@switch($active->state->id)
-                                        @case(1)
-                                            table-secondary
-                                        @break
-                                        @case(2)
-                                            table-primary
-                                        @break
-                                        @case(3)
-                                            table-warning
-                                        @break
-                                        @case(4)
-                                            table-success
-                                        @break
-                                        @default
-                                            ''
-                                        @endswitch" style="max-width: 20%; white-space: normal; overflow-wrap: break-word;">
-                            {{ $active->state->name }}
+                        <td class="@if ($active->mail_date != NULL) table-warning @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
+                            @if ($active->mail_date == NULL)
+                                0000-00-00
+                            @else
+                                {{ $active->mail_date }}
+                            @endif
                         </td>
-                        <td style="max-width: 40%; white-space: normal; overflow-wrap: break-word;">
-                            <select name="states[{{ $active->id }}]" class="form-control" style="font-size: 1em; width: 100%">
-                                @foreach ($states as $state)
-                                    <option value="{{ $state->id }}" {{ $active->state_id == $state->id ? 'selected' : '' }}>{{ $state->name }}</option>
-                                @endforeach
-                            </select>
+                        <td class="@if ($active->envelope_date != NULL) table-success @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
+                            @if ($active->envelope_date == NULL)
+                                0000-00-00
+                            @else
+                                {{ $active->envelope_date }}
+                            @endif
+                        </td>
+                        <td class="@if ($active->self_collection != NULL) table-info @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
+                            @if ($active->self_collection == NULL)
+                                0000-00-00
+                            @else
+                                {{ $active->self_collection }}
+                            @endif
+                        </td>
+                        <td class="@if ($active->return != NULL) table-primary @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
+                            @if ($active->return == NULL)
+                                0000-00-00
+                            @else
+                                {{ $active->return }}
+                            @endif
+                        </td>
+                        <td style="max-width: 25%; white-space: normal; overflow-wrap: break-word; @if ($active->company != '0') background-color: #a160d1; @endif">{{ $active->company }}</td>
+                        <td style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
+                            <a href="{{ route('edit.status', $active->id) }}" class="btn btn-primary btn-sm">Edytuj</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        </form>
-
 
     </div>
 

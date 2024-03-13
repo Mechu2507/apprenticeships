@@ -26,6 +26,16 @@ return new class extends Migration
             $table->string('supervisor_name')->nullable();
             $table->integer('hours')->nullable();
             $table->boolean('generated')->default(false);
+            $table->string('index')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->date('for_signature')->nullable();
+            $table->date('mail_date')->nullable();
+            $table->date('envelope_date')->nullable();
+            $table->date('self_collection')->nullable();
+            $table->date('return')->nullable();
+            $table->string('company')->default('0');
             $table->timestamps();
         
             $table->foreign('code_id')->references('id')->on('codes')->onDelete('cascade');

@@ -23,6 +23,15 @@ class Active extends Model
         'hours',
         'generated',
         'state_id',
+        'index',
+        'address',
+        'phone',
+        'email',
+        'for_signature',
+        'mail_date',
+        'envelope_date',
+        'self_collection',
+        'return'
     ];
 
     public function code()
