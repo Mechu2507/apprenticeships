@@ -14,6 +14,7 @@ use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StatController;
 use App\Http\Controllers\DirectionController;
+use App\Http\Controllers\CoordinatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,14 @@ Route::middleware(['checkSession'])->group(function () {
 
     Route::get('/selectstats', [SelectClassController::class, 'statIndex'])->name('selectstats');
     Route::post('/stats', [StatController::class, 'index'])->name('stat.index');
+
+    Route::get('/coordinators', [CoordinatorController::class, 'index'])->name('coordinators.index');
+    Route::post('/upload-coordinator', [CoordinatorController::class, 'uploadCoordinator'])->name('upload-coordinator');
+    Route::get('/edit-coordinator/{id}', [CoordinatorController::class, 'edit'])->name('edit-coordinator');
+    Route::put('/update-coordinator/{id}', [CoordinatorController::class, 'update'])->name('update-coordinator');
+    Route::get('/create-coordinator', [CoordinatorController::class, 'create'])->name('create-coordinator');
+    Route::post('/store-coordinator', [CoordinatorController::class, 'store'])->name('store-coordinator');
+    Route::delete('/delete-coordinator/{id}', [CoordinatorController::class, 'destroy'])->name('delete-coordinator');
 
     Route::middleware(['isAdmin'])->group(function () {
         Route::get('/admin/directions', [DirectionController::class, 'index'])->name('directions.index');

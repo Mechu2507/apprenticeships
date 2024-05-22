@@ -14,10 +14,9 @@ class StateController extends Controller
     {
         $codeId = $request->input('code_id');
         $actives = Active::where('code_id', $codeId)->where('generated', true)->get();
-        $states = State::all()->where('id', '!=', 1);
         $active = Active::find($codeId);
 
-        return view('main.state_table', compact('actives', 'states', 'codeId', 'active'));
+        return view('main.state_table', compact('actives', 'codeId', 'active'));
     }
 
     public function uploadStudentsData(Request $request)
@@ -50,16 +49,16 @@ class StateController extends Controller
         $active->company = $request->input('company', $active->company);
 
         $request->validate([
-            'index' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'index' => 'nullable',
+            'address' => 'nullable',
+            'phone' => 'nullable',
+            'email' => 'nullable',
             'for_signature' => 'nullable|date',
             'mail_date' => 'nullable|date',
             'envelope_date' => 'nullable|date',
             'self_collection' => 'nullable|date',
             'return' => 'nullable|date',
-            'company' => 'required'
+            'company' => 'nullable'
         ]);
         
         $directionId = session('direction_logged_in');

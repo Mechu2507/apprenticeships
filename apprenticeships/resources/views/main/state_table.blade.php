@@ -32,7 +32,7 @@
                     <th>Firma</th>
                     <th>Edytuj</th>
                 </tr>
-            <thead>
+            </thead>
             <tbody>
                 @foreach ($actives as $active)
                     <tr>

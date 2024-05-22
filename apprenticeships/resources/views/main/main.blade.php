@@ -8,11 +8,12 @@
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectclass')}}'" style="margin: 10px">Podgląd</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('import-active')}}'" style="margin: 10px">Import .xls</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('export-index')}}'" style="margin: 10px">Export .xls</button>
-    </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectarchive')}}'" style="margin: 10px">Archiwum</button>
+    </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('representatives.index')}}'" style="margin: 10px">Reprezentant</button>  
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectstats')}}'" style="margin: 10px">Statystyka</button>
-    <button class="btn btn-primary" onclick="window.location.href='{{route('selectstatus')}}'" style="margin: 10px">Status</button>   
+    <button class="btn btn-primary" onclick="window.location.href='{{route('selectstatus')}}'" style="margin: 10px">Status</button> 
+    <button class="btn btn-primary" onclick="window.location.href='{{route('coordinators.index')}}'" style="margin: 10px">Koordynatorzy</button>  
 
     <br/><br/>
     
@@ -88,6 +89,16 @@
             <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">Wybór rocznika do wyświetlenia oraz edycji statusu praktyk</div>
             </div> 
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingEight">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                  Koordynatorzy
+              </button>
+            </h2>
+            <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Dodanie, edycja, usunięcie koordynatora praktyk</div>
+            </div>
           </div>
       </div>
 

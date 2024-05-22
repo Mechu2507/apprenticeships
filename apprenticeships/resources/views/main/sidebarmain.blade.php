@@ -27,6 +27,9 @@
         <button class="btn btn-primary" onclick="window.location.href='{{route('selectstatus')}}'" style="width:100%">Status</button>
     </li>
     <li class="nav-item">
+        <button class="btn btn-primary" onclick="window.location.href='{{route('coordinators.index')}}'" style="width:100%">Koordynatorzy</button>
+    </li>
+    <li class="nav-item">
         <p> </p>
     </li>
     <li class="nav-item">
