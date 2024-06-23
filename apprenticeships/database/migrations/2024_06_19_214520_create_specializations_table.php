@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coordinators', function (Blueprint $table) {
+        Schema::create('specializations', function (Blueprint $table) {
             $table->id();
-            $table->string('direction');
             $table->string('name');
-            $table->string('phone');
-            $table->string('mail_ur');
-            $table->string('mail_google');
-            $table->string('table_shared');
-            $table->string('form_link');
+            $table->string('letter') -> nullable();
             $table->timestamps();
-
         });
     }
 
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coordinators');
+        Schema::dropIfExists('specializations');
     }
 };

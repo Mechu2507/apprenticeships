@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Code;
 use Illuminate\Http\Request;
 use App\Models\Direction;
+use App\Models\Specialization;
 
 class SelectClassController extends Controller
 {
@@ -20,7 +21,8 @@ class SelectClassController extends Controller
     public function create()
     {
         $directionId = session('direction_logged_in');
-        return view('main.createcode', compact('directionId'));
+        $specializations = Specialization::all();
+        return view('main.createcode', compact('directionId', 'specializations'));
     }
 
     public function store(Request $request)
@@ -30,12 +32,15 @@ class SelectClassController extends Controller
             'mode' => 'required|in:S,N',
             'degree' => 'required|in:1,2',
             'year' => 'required|integer|min:2000',
+            'specialization' => 'required',
         ]);
     
         $directionId = session('direction_logged_in');
         $directionCode = Direction::find($directionId)->code; 
     
-        $newCode = $directionCode . $request->digit . $request->mode . $request->degree . '|' . substr($request->year, -2);
+        $specialization = Specialization::find($request->specialization)->letter;
+
+        $newCode = $directionCode . $request->digit . $request->mode . $request->degree . '|' . substr($request->year, -2) . $specialization;
     
         $romanDigit = $this->toRoman($request->digit);
         $romanDegree = $this->toRoman($request->degree);

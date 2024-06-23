@@ -15,6 +15,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\StatController;
 use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\CoordinatorController;
+use App\Http\Controllers\SpecializationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,12 @@ Route::middleware(['checkSession'])->group(function () {
     Route::get('/create-coordinator', [CoordinatorController::class, 'create'])->name('create-coordinator');
     Route::post('/store-coordinator', [CoordinatorController::class, 'store'])->name('store-coordinator');
     Route::delete('/delete-coordinator/{id}', [CoordinatorController::class, 'destroy'])->name('delete-coordinator');
+
+    Route::get('/specializations', [SpecializationController::class, 'index'])->name('specializations.index');
+    Route::post('/specializations', [SpecializationController::class, 'store'])->name('specializations.store');
+    Route::get('/specializations/{id}/edit', [SpecializationController::class, 'edit'])->name('specializations.edit');
+    Route::put('/specializations/{id}', [SpecializationController::class, 'update'])->name('specializations.update');
+    Route::delete('/specializations/{id}/delete', [SpecializationController::class, 'destroy'])->name('specializations.destroy');
 
     Route::middleware(['isAdmin'])->group(function () {
         Route::get('/admin/directions', [DirectionController::class, 'index'])->name('directions.index');

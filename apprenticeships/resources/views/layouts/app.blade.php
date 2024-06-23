@@ -18,7 +18,7 @@
         
         <div class="d-flex">
             @if (session('direction_name'))
-            <div id="sidebar" class="bg-light border" style="width: 200px; background-color: #0d6efd !important; height: 90vh; z-index: 1050; position: fixed;">
+            <div id="sidebar" class="bg-light border" style="width: 200px; background-color: #0d6efd !important; height: 100vh; z-index: 1050; position: fixed;">
                 <ul class="nav flex-column">
                     @if (session('direction_name') == 'Admin')
                         @include('admin.sidebaradmin')
@@ -38,10 +38,6 @@
                 </div>
     
             </div>
-        </div>
-    
-        <div class="container-fluid bg-light fixed-bottom">
-            <p class="text-center text-black">Uniwersytet Rzeszowski</p>
         </div>
 
         <script>

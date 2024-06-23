@@ -34,7 +34,15 @@
         <p style="text-align: justify; font-size: 17px; text-align: justify;">i</p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;"><b>{{ $active->company_name }}</b></p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;">{{ $active->company_address }}</p>
-        <p style="text-align: justify; font-size: 17px; text-align: justify;">zwana dalej „instytucją”, którą reprezentuje <b>{{ $active->company_person }} - {{ $active->position}}</b></p>
+        <p style="text-align: justify; font-size: 17px; text-align: justify;">
+            @if ($active->company_form == 1)
+            zwany
+            @elseif ($active->company_form == 2)
+            zwana
+            @else
+            zwane
+            @endif
+            dalej „instytucją”, którą reprezentuje <b>{{ $active->MrMs_company_person}} {{ $active->company_person }} - {{ $active->position}}</b></p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;">zawarli na okres</p>
         <br/>
         <p style="text-align: center; font-size: 17px"><b>
@@ -63,7 +71,7 @@
             <tr>
                 <td>1</td>
                 <td>Praktyka zawodowa</td>
-                <td>{{ $active->student_name }}</td>
+                <td>{{ $active->student_last_name }}  {{ $active->student_first_name }}</td>
                 <td>{{ $active->code->direction->name }}</td>
                 <td>{{ $active->code->year}}<br/>
                     {{ $active->code->degree}}<br/>
@@ -73,7 +81,7 @@
             </tr>
         </table>
         <br/>
-        <p style="text-align: justify; font-size: 17px; text-align: justify;">Praktyka w wymiarze <b>{{ $active->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie <b>{{ $active->supervisor_name }}</b>.</p>
+        <p style="text-align: justify; font-size: 17px; text-align: justify;">Praktyka w wymiarze <b>{{ $active->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie {{ $active->MrMs_supervisor }} <b>{{ $active->supervisor_name }}</b>.</p>
         <br/><br/>
         <div class="page-break"></div>
         <table>

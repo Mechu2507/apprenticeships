@@ -19,7 +19,13 @@
                 <option value="2">Drugiego stopnia</option>
             </select><br/>
      
-            <input class="form-control" type="number" name="year" min="2000" placeholder="Rok" required><br/>
+            <input class="form-control" type="number" name="year" min="2000" placeholder="Rok kalendarzowy" required><br/>
+
+            <select class="form-select" name="specialization" required>
+                @foreach ($specializations as $specialization)
+                    <option value="{{ $specialization->id }}">{{ $specialization->letter }} - {{ $specialization->name }}</option>
+                @endforeach
+            </select><br/>
      
             <button class="btn btn-primary" type="submit">Dodaj rocznik</button>
         </form>

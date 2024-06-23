@@ -17,6 +17,7 @@ class Code extends Model
         'year',
         'degree',
         'mode',
+        'specialization',
     ];
 
     public function direction()

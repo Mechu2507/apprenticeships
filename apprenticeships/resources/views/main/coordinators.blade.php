@@ -30,7 +30,6 @@
                     <th>Mail Google</th>
                     <th>Tabela udostępniona</th>
                     <th>Link Formularza</th>
-                    <th>Sposób logowania na dysk Google</th>
                     <th>Edycja</th>
                     <th>Usuń</th>
                 </tr>
@@ -46,7 +45,6 @@
                         <td>{{ $coordinator->mail_google }}</td>
                         <td>{{ $coordinator->table_shared }}</td>
                         <td>{{ $coordinator->form_link }}</td>
-                        <td>{{ $coordinator->login_method }}</td>
                         <td><a href="{{ route('edit-coordinator', ['id' => $coordinator->id]) }}">Edytuj</a></td>
                         <td>
                             <form action="{{ route('delete-coordinator', ['id' => $coordinator->id]) }}" method="POST">

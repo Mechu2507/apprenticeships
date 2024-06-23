@@ -37,7 +37,15 @@
         <p style="text-align: justify; font-size: 17px; text-align: justify;">i</p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;"><b>{{ $firstActive->company_name }}</b></p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;">{{ $firstActive->company_address }}</p>
-        <p style="text-align: justify; font-size: 17px; text-align: justify;">zwana dalej „instytucją”, którą reprezentuje <b>{{ $firstActive->company_person }} - {{ $firstActive->position}}</b></p>
+        <p style="text-align: justify; font-size: 17px; text-align: justify;">
+            @if ($active->company_form == 1)
+            zwany
+            @elseif ($active->company_form == 2)
+            zwana
+            @else
+            zwane
+            @endif
+            dalej „instytucją”, którą reprezentuje <b>{{ $firstActive->MrMs_company_person}} {{ $firstActive->company_person }} - {{ $firstActive->position}}</b></p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;">zawarli na okres</p>
         <br/>
         <p style="text-align: center; font-size: 17px"><b>
@@ -67,7 +75,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>Praktyka zawodowa</td>
-                    <td>{{ $active->student_name }}</td>
+                    <td>{{ $active->student_last_name }}  {{ $active->student_first_name }}</td>
                     <td>{{ $active->code->direction->name }}</td>
                     <td>{{ $active->code->year}}<br/>
                         {{ $active->code->degree}}<br/>
@@ -80,7 +88,7 @@
             @endforeach
         </table>
         <br/>
-        <p style="text-align: justify; font-size: 16px; text-align: justify;">Praktyka w wymiarze <b>{{ $firstActive->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie <b>{{ $firstActive->supervisor_name }}</b>.</p>
+        <p style="text-align: justify; font-size: 16px; text-align: justify;">Praktyka w wymiarze <b>{{ $firstActive->hours }}</b> w w/w terminie wg indywidualnie ustalonego harmonogramu. Opiekunem praktyk będzie {{ $firstActive->MrMs_supervisor }} <b>{{ $firstActive->supervisor_name }}</b>.</p>
         <br/>
         <div class="page-break"></div>
         <table>

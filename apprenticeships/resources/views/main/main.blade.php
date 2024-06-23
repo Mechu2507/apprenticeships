@@ -14,6 +14,7 @@
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectstats')}}'" style="margin: 10px">Statystyka</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('selectstatus')}}'" style="margin: 10px">Status</button> 
     <button class="btn btn-primary" onclick="window.location.href='{{route('coordinators.index')}}'" style="margin: 10px">Koordynatorzy</button>  
+    <button class="btn btn-primary" onclick="window.location.href='{{route('specializations.index')}}'" style="margin: 10px">Specjalizacje</button> 
 
     <br/><br/>
     
@@ -100,6 +101,15 @@
               <div class="accordion-body">Dodanie, edycja, usunięcie koordynatora praktyk</div>
             </div>
           </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingNine">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                  Specjalizacje
+              </button>
+            </h2>
+            <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Dodanie, edycja, usunięcie specjalizacji</div>
+            </div>
       </div>
 
       <br/><br/>

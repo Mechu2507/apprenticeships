@@ -28,40 +28,51 @@ class ActivesImport implements ToModel, WithStartRow
             return null;
         }
         
-        $existingActive = Active::where('student_name', $row[1])
-                                ->where('company_name', $row[2])
+        $existingActive = Active::where('student_last_name', $row[1])
+                                ->where('student_first_name', $row[2])
+                                ->where('company_name', $row[3])
                                 ->first();
 
-        $mrMs = (substr(trim($row[1]), -1) === 'a') ? 'Pani' : 'Pan';
+        $mrMs = (substr(trim($row[2]), -1) === 'a') ? 'Pani' : 'Pan';
+        $mrMsCompanyPerson = (substr(trim($row[5]), -1) === 'a') ? 'Pani' : 'Pan';
+        $mrMsSupervisor = (substr(trim($row[9]), -1) === 'a') ? 'Pani' : 'Pan';
 
         if ($existingActive) {
             $existingActive->update([
-                'student_name' => $row[1],
+                'student_last_name' => $row[1],
+                'student_first_name' => $row[2],
                 'MrMs' => $mrMs,
-                'company_name' => isset($row[2]) ? $row[2] : null,
-                'company_address' => isset($row[3]) ? $row[3] : null,
-                'company_person' => isset($row[4]) ? $row[4] : null,
-                'position' => isset($row[5]) ? $row[5] : null,
-                'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
-                'end_date' => isset($row[7]) ? $this->transformEndDate($row[7]) : null,
-                'supervisor_name' => isset($row[8]) ? $row[8] : null,
-                'hours' => isset($row[10]) ? $row[10] : null,
+                'company_name' => isset($row[3]) ? $row[3] : null,
+                'company_form' => 1,
+                'company_address' => isset($row[4]) ? $row[4] : null,
+                'company_person' => isset($row[5]) ? $row[5] : null,
+                'MrMs_company_person' => $mrMsCompanyPerson,
+                'position' => isset($row[6]) ? $row[6] : null,
+                'start_date' => isset($row[7]) ? $this->transformStartDate($row[7]) : null,
+                'end_date' => isset($row[8]) ? $this->transformEndDate($row[8]) : null,
+                'supervisor_name' => isset($row[9]) ? $row[9] : null,
+                'MrMs_supervisor' => $mrMsSupervisor,
+                'hours' => isset($row[11]) ? $row[11] : null,
             ]);
             return $existingActive;
 
         } else {
             return new Active([
                 'code_id' => $this->codeId,
-                'student_name' => $row[1],
+                'student_last_name' => $row[1],
+                'student_first_name' => $row[2],
                 'MrMs' => $mrMs,
-                'company_name' => isset($row[2]) ? $row[2] : null,
-                'company_address' => isset($row[3]) ? $row[3] : null,
-                'company_person' => isset($row[4]) ? $row[4] : null,
-                'position' => isset($row[5]) ? $row[5] : null,
-                'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
-                'end_date' => isset($row[7]) ? $this->transformEndDate($row[7]) : null,
-                'supervisor_name' => isset($row[8]) ? $row[8] : null,
-                'hours' => isset($row[10]) ? $row[10] : null,
+                'company_name' => isset($row[3]) ? $row[3] : null,
+                'company_form' => 1,
+                'company_address' => isset($row[4]) ? $row[4] : null,
+                'company_person' => isset($row[5]) ? $row[5] : null,
+                'MrMs_company_person' => $mrMsCompanyPerson,
+                'position' => isset($row[6]) ? $row[6] : null,
+                'start_date' => isset($row[7]) ? $this->transformStartDate($row[7]) : null,
+                'end_date' => isset($row[8]) ? $this->transformEndDate($row[8]) : null,
+                'supervisor_name' => isset($row[9]) ? $row[9] : null,
+                'MrMs_supervisor' => $mrMsSupervisor,
+                'hours' => isset($row[11]) ? $row[11] : null,
                 'generated' => false,
             ]);
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Code;
 use App\Models\Direction;
+use App\Models\Specialization;
 
 class AdminSelectClassController extends Controller
 {
@@ -22,8 +23,9 @@ class AdminSelectClassController extends Controller
         $directionId = session('direction_logged_in');
 
         $directions = Direction::all()->where('id', '!=', 1);
+        $specializations = Specialization::all();
 
-        return view('admin.createcode', compact('directionId', 'directions'));
+        return view('admin.createcode', compact('directionId', 'directions', 'specializations'));
     }
 
     public function store(Request $request)
@@ -34,20 +36,24 @@ class AdminSelectClassController extends Controller
             'mode' => 'required|in:S,N',
             'degree' => 'required|in:1,2',
             'year' => 'required|integer|min:2000',
+            'specialization' => 'required',
         ]);
     
         $directionId = session('direction_logged_in');
-        //$directionCode = Direction::find($directionId)->code;
         $directionCode = Direction::find($request->direction)->code; 
-    
-        $newCode = $directionCode . $request->digit . $request->mode . $request->degree . '|' . substr($request->year, -2);
+
+        $direction = Direction::find($request->direction)->id;
+
+        $specialization = Specialization::find($request->specialization)->letter;
+
+        $newCode = $directionCode . $request->digit . $request->mode . $request->degree . '|' . substr($request->year, -2) . $specialization;
     
         $romanDigit = $this->toRoman($request->digit);
         $romanDegree = $this->toRoman($request->degree);
         $fullMode = $this->convertMode($request->mode);
 
         Code::create([
-            'direction_id' => $directionId,
+            'direction_id' => $direction,
             'code' => $newCode,
             'active' => 1,
             'year' => $romanDigit . ' rok',

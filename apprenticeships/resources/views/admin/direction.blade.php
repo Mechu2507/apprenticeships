@@ -21,7 +21,6 @@
         </div>
         
         <div>
-
         <h4>Dodaj kierunek</h4>
         <form action="{{ route('directions.store') }}" method="post">
             @csrf

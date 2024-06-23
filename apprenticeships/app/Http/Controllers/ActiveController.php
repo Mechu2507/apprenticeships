@@ -74,15 +74,19 @@ class ActiveController extends Controller
         $active = Active::findOrfail($id);
 
         $request->validate([
-            'student_name' => 'required',
-            'company_name' => 'required',
+            'student_last_name' => 'required',
+            'student_first_name' => 'required',
             'MrMs' => 'required',
+            'company_name' => 'required',
+            'company_form' => 'required',
             'company_address' => 'required',
             'company_person' => 'required',
+            'MrMs_company_person' => 'required',
             'position' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             'supervisor_name' => 'required',
+            'MrMs_supervisor' => 'required',
             'hours' => 'required',
             'generated' => 'required',
         ]);
