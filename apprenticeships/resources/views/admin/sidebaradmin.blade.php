@@ -33,7 +33,7 @@
     <button class="btn btn-primary" onclick="window.location.href='{{route('coordinators.index')}}'" style="width:100%">Koordynatorzy</button>
 </li>
 <li class="nav-item">
-    <button class="btn btn-primary" onclick="window.location.href='{{route('specializations.index')}}'" style="width:100%">Specjalizacje</button>
+    <button class="btn btn-primary" onclick="window.location.href='{{route('specializations.index')}}'" style="width:100%">Specjalności</button>
 </li>
 <li class="nav-item">
     <p> </p>
@@ -42,5 +42,8 @@
     <button class="btn btn-primary" onclick="window.location.href='{{route('directions.change-password-form')}}'" style="width:100%">Zmień hasło</button>
 </li>
 <li class="nav-item">
-    <button class="btn btn-primary" onclick="window.location.href='{{route('logout')}}'" style="width:100%">Wyloguj</button>
+    <form action="{{ route('logout') }}" method="POST" style="width: 100%;">
+        @csrf
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Wyloguj</button>
+    </form>
 </li>

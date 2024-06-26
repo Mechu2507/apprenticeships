@@ -38,9 +38,9 @@
         <p style="text-align: justify; font-size: 17px; text-align: justify;"><b>{{ $firstActive->company_name }}</b></p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;">{{ $firstActive->company_address }}</p>
         <p style="text-align: justify; font-size: 17px; text-align: justify;">
-            @if ($active->company_form == 1)
+            @if ($firstActive->company_form == 1)
             zwany
-            @elseif ($active->company_form == 2)
+            @elseif ($firstActive->company_form == 2)
             zwana
             @else
             zwane

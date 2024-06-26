@@ -31,7 +31,7 @@ use App\Http\Controllers\SpecializationController;
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('show-login-form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['checkSession'])->group(function () {
 

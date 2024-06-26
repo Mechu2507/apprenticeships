@@ -51,7 +51,7 @@ class LoginController extends Controller
 
     }
 
-    public function logout(){
+    public function logout(Request $request){
         session()->forget([
             'direction_logged_in',
             'direction_name'
