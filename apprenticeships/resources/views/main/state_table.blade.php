@@ -19,8 +19,7 @@
         <table class="table table-striped table-sm" style="font-size: 0.8em;">
             <thead>
                 <tr>
-                    <th>Nazwisko</th>
-                    <th>Imię</th>
+                    <th>Nazwisko i imię</th>
                     <th>Indeks</th>
                     <th>Adres</th>
                     <th>Telefon</th>
@@ -37,8 +36,7 @@
             <tbody>
                 @foreach ($actives as $active)
                     <tr>
-                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->student_last_name }}</td>
-                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->student_first_name }}</td>
+                        <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->student_name }}</td>
                         <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->index }}</td>
                         <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->address }}</td>
                         <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->phone }}</td>

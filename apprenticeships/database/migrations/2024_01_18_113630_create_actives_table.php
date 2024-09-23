@@ -16,8 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('code_id');
             $table->unsignedBigInteger('state_id')->default(1);
             $table->string('MrMs');
-            $table->string('student_last_name');
-            $table->string('student_first_name');
+            $table->string('student_name');
             $table->string('company_name')->nullable();
             $table->integer('company_form')->default(1);
             $table->string('company_address')->nullable();

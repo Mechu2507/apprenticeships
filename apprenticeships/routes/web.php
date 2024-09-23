@@ -17,6 +17,7 @@ use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\SpecializationController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

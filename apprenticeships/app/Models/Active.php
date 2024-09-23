@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Code;
 
 class Active extends Model
 {
@@ -12,8 +13,6 @@ class Active extends Model
     protected $fillable = [
         'code_id',
         'student_name',
-        'student_last_name',
-        'student_first_name',
         'MrMs',
         'company_name',
         'company_form',

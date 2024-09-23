@@ -75,7 +75,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>Praktyka zawodowa</td>
-                    <td>{{ $active->student_last_name }}  {{ $active->student_first_name }}</td>
+                    <td>{{ $active->student_name }}</td>
                     <td>{{ $active->code->direction->name }}</td>
                     <td>{{ $active->code->year}}<br/>
                         {{ $active->code->degree}}<br/>

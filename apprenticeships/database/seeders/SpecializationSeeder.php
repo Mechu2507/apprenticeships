@@ -1,11 +1,8 @@
 <?php
-
 namespace Database\Seeders;
-
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
 class SpecializationSeeder extends Seeder
 {
     /**
@@ -19,6 +16,5 @@ class SpecializationSeeder extends Seeder
             ['letter' => 'A', 'name' => 'Analiza i bezpieczeństwo danych',],
             ['letter' => 'B', 'name' => 'Zastosowania matematyki w finansach',]
         ]);
-
     }
 }

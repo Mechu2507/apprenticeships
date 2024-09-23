@@ -26,16 +26,22 @@ class StudentsDataImport implements ToModel, WithStartRow
             return null;
         }
 
+        $fullName = $row[1];
+        $nameParts = explode(' ', $fullName);
+
+        if(count($nameParts) > 1){
+            $reverseNameParts = $nameParts[1] . ' ' . $nameParts[0];
+
             Active::where('code_id', $this->codeId)
-                ->where('student_last_name', $row[1])
-                ->where('student_first_name', $row[2])
+                ->where('student_name', $reverseNameParts)
                 ->update([
-                    'index' => $row[3],
-                    'address' => $row[4],
-                    'phone' => $row[5],
-                    'email' => $row[6]
+                    'index' => $row[2],
+                    'address' => $row[3],
+                    'phone' => $row[4],
+                    'email' => $row[5]
                 ]);
 
+        }
     return null;
     }
 

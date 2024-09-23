@@ -13,8 +13,8 @@
     <button class="btn btn-primary" onclick="window.location.href='{{route('aselectclass')}}'" style="margin: 10px">Podgląd</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('admin.import-active')}}'" style="margin: 10px">Import .xls</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('admin.export-index')}}'" style="margin: 10px">Export .xls</button>
+    </br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('admin.selectarchive')}}'" style="margin: 10px">Archiwum</button>
-    <br>
     <button class="btn btn-primary" onclick="window.location.href='{{route('representatives.index')}}'" style="margin: 10px">Reprezentant</button>  
     <button class="btn btn-primary" onclick="window.location.href='{{route('admin.selectstats')}}'" style="margin: 10px">Statystyka</button>
     <button class="btn btn-primary" onclick="window.location.href='{{route('admin.selectstatus')}}'" style="margin: 10px">Status</button> 

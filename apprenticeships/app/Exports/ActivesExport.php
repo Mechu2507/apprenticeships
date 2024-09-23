@@ -23,8 +23,7 @@ class ActivesExport implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         return Active::where('code_id', $this->codeId)->get([
-            'student_last_name',
-            'student_first_name',
+            'student_name',
             'company_name',
             'company_address',
             'company_person',
@@ -40,8 +39,7 @@ class ActivesExport implements FromCollection, WithHeadings, WithMapping
     public function map($active): array
     {
         return [
-            $active->student_last_name,
-            $active->student_first_name,
+            $active->student_name,
             $active->company_name,
             $active->company_address,
             $active->company_person,
@@ -57,8 +55,7 @@ class ActivesExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'Nazwisko studenta',
-            'Imię studenta',
+            'Nazwisko i imię studenta',
             'Dokładna nazwa instytucji ',
             'Dokładny adres instytucji',
             'Nazwisko i imię osoby, która reprezentuje instytucję',

@@ -10,14 +10,8 @@
             @method('PUT')
             <table class="table table-borderless" style="width: 500px">
                 <tbody>
-                    <tr>
-                        <td><label for="student_last_name">Nazwisko: </label></td>
-                        <td><input type="text" class="form-control" id="student_last_name" name="student_last_name" value="{{ $active->student_last_name }}"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="student_first_name">Imię: </label></td>
-                        <td><input type="text" class="form-control" id="student_first_name" name="student_first_name" value="{{ $active->student_first_name }}"></td>
-                    </tr>
+                    <td><label for="student_name">Nazwisko i imię: </label></td>
+                        <td><input type="text" class="form-control" id="student_name" name="student_name" value="{{ $active->student_name }}"></td>
                     <tr>
                         <td><label for="MrMs">Pan/Pani: </label></td>
                         <td>
