@@ -30,10 +30,10 @@ class StudentsDataImport implements ToModel, WithStartRow
         $nameParts = explode(' ', $fullName);
 
         if(count($nameParts) > 1){
-            $reverseNameParts = $nameParts[1] . ' ' . $nameParts[0];
+            // $reverseNameParts = $nameParts[1] . ' ' . $nameParts[0];
 
             Active::where('code_id', $this->codeId)
-                ->where('student_name', $reverseNameParts)
+                ->where('student_name', $row[1])
                 ->update([
                     'index' => $row[2],
                     'address' => $row[3],

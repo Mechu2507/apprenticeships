@@ -43,35 +43,35 @@
                         <td style="white-space: normal; overflow-wrap: break-word;">{{ $active->email }}</td>
                         <td class="@if ($active->for_signature != NULL) table-danger @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
                             @if ($active->for_signature == NULL)
-                                0000-00-00
+                                Brak danych
                             @else
                                 {{ $active->for_signature }}
                             @endif
                         </td>
                         <td class="@if ($active->mail_date != NULL) table-warning @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
                             @if ($active->mail_date == NULL)
-                                0000-00-00
+                                Brak danych
                             @else
                                 {{ $active->mail_date }}
                             @endif
                         </td>
                         <td class="@if ($active->envelope_date != NULL) table-success @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
                             @if ($active->envelope_date == NULL)
-                                0000-00-00
+                                Brak danych
                             @else
                                 {{ $active->envelope_date }}
                             @endif
                         </td>
                         <td class="@if ($active->self_collection != NULL) table-info @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
                             @if ($active->self_collection == NULL)
-                                0000-00-00
+                                Brak danych
                             @else
                                 {{ $active->self_collection }}
                             @endif
                         </td>
                         <td class="@if ($active->return != NULL) table-primary @endif" style="max-width: 25%; white-space: normal; overflow-wrap: break-word;">
                             @if ($active->return == NULL)
-                                0000-00-00
+                                Brak danych
                             @else
                                 {{ $active->return }}
                             @endif

@@ -48,9 +48,9 @@ class ActivesImport implements ToModel, WithStartRow
                 'position' => isset($row[5]) ? $row[5] : null,
                 'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
                 'end_date' => isset($row[7]) ? $this->transformEndDate($row[7]) : null,
-                'supervisor_name' => isset($row[8]) ? $row[9] : null,
+                'supervisor_name' => isset($row[8]) ? $row[8] : null,
                 'MrMs_supervisor' => $mrMsSupervisor,
-                'hours' => isset($row[10]) ? $row[11] : null,
+                'hours' => isset($row[10]) ? $row[10] : null,
             ]);
             return $existingActive;
 
@@ -59,10 +59,10 @@ class ActivesImport implements ToModel, WithStartRow
                 'code_id' => $this->codeId,
                 'student_name' => $row[1],
                 'MrMs' => $mrMs,
-                'company_name' => isset($row[2]) ? $row[3] : null,
+                'company_name' => isset($row[2]) ? $row[2] : null,
                 'company_form' => 1,
-                'company_address' => isset($row[3]) ? $row[4] : null,
-                'company_person' => isset($row[4]) ? $row[5] : null,
+                'company_address' => isset($row[3]) ? $row[3] : null,
+                'company_person' => isset($row[4]) ? $row[4] : null,
                 'MrMs_company_person' => $mrMsCompanyPerson,
                 'position' => isset($row[5]) ? $row[5] : null,
                 'start_date' => isset($row[6]) ? $this->transformStartDate($row[6]) : null,
